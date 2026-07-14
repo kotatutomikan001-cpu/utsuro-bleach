@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <!-- Google tag (gtag.js) - ここからアナリティクスのコードを追加したよ！ -->
+    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MQD0CVKK5X"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -10,7 +10,6 @@
 
       gtag('config', 'G-MQD0CVKK5X');
     </script>
-    <!-- アナリティクスコード ここまで -->
 
     <meta charset="UTF-8">
     <title>氷室うつろさん BLEACH Rebirth of Souls 配信用 護廷十三隊一覧表</title>
@@ -26,12 +25,20 @@
             align-items: center;
         }
         h1 {
-            color: #e50914; /* ブリーチっぽい赤 */
+            color: #ffffff; /* 全体のベースは白 */
             text-shadow: 2px 2px 4px #000;
             text-align: center;
             max-width: 800px;
             line-height: 1.5;
             margin-bottom: 15px;
+        }
+        /* 「氷室うつろさん」用の薄い水色スタイル */
+        .utsuro-highlight {
+            color: #87ceeb;
+        }
+        /* 「BLEACH〜」用のブリーチっぽい赤スタイル */
+        .bleach-highlight {
+            color: #e50914;
         }
         /* 注釈テキストのスタイル */
         .notice-text {
@@ -121,8 +128,12 @@
 </head>
 <body>
 
-    <!-- 見出し -->
-    <h1>氷室うつろさん<br>BLEACH Rebirth of Souls 配信用<br>護廷十三隊一覧表</h1>
+    <!-- 見出し（氷室うつろさんを薄い水色に、BLEACH〜を赤にしたよ！） -->
+    <h1>
+        <span class="utsuro-highlight">氷室うつろさん</span><br>
+        <span class="bleach-highlight">BLEACH Rebirth of Souls 配信用</span><br>
+        護廷十三隊一覧表
+    </h1>
 
     <!-- 注釈テキストエリア -->
     <div class="notice-text">
