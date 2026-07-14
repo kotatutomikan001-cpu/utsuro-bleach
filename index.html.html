@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>氷室うつろさん BLEACH Rebirth of Souls 配信用 護廷十三隊一覧表</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            color: #e50914; /* ブリーチっぽい赤 */
+            text-shadow: 2px 2px 4px #000;
+            text-align: center;
+            max-width: 800px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+        /* 注釈テキストのスタイル */
+        .notice-text {
+            font-size: 0.85em;
+            color: #aaa;
+            text-align: center;
+            max-width: 600px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            background-color: #252525;
+            padding: 10px 15px;
+            border-radius: 5px;
+            border-left: 4px solid #e50914;
+        }
+        /* ボタンが並ぶエリア */
+        .btn-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 800px;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        /* 各隊のボタン */
+        .squad-btn {
+            background-color: #333;
+            color: #fff;
+            border: 2px solid #555;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .squad-btn:hover {
+            background-color: #e50914;
+            border-color: #fff;
+        }
+        /* 特別な零番隊ボタンのホバー色（金色） */
+        .zero-btn:hover {
+            background-color: #ffc107;
+            border-color: #fff;
+            color: #000;
+        }
+        /* 情報が表示されるエリア */
+        .info-box {
+            background-color: #222;
+            border: 3px solid #e50914;
+            padding: 20px;
+            width: 100%;
+            max-width: 500px;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+        .info-title {
+            font-size: 1.5em;
+            border-bottom: 2px solid #555;
+            padding-bottom: 5px;
+            margin-top: 0;
+            color: #ffc107;
+        }
+        .position-title {
+            font-size: 1.0em;
+            color: #aaa;
+            margin-top: 15px;
+            margin-bottom: 2px;
+            font-weight: bold;
+        }
+        .char-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin: 0;
+        }
+        .char-kana {
+            font-size: 0.8em;
+            color: #ccc;
+            margin: 0;
+        }
+        /* 動的に追加される席官用のエリア */
+        .dynamic-position {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 見出し -->
+    <h1>氷室うつろさん<br>BLEACH Rebirth of Souls 配信用<br>護廷十三隊一覧表</h1>
+
+    <!-- 注釈テキストエリア -->
+    <div class="notice-text">
+        ※氷室うつろさんのBLEACH Rebirth of Souls配信に沿って更新していますので、<br>
+        未登場のキャラ及び名前の判明していないキャラは「？？？」としております。
+    </div>
+
+    <!-- 隊を選択するボタン -->
+    <div class="btn-container" id="btnContainer"></div>
+
+    <!-- キャラクター情報が表示される箱 -->
+    <div class="info-box">
+        <h2 class="info-title" id="squadName">隊を選択してください</h2>
+        
+        <!-- 通常表示エリア -->
+        <div id="standardPositions">
+            <div class="position-title">隊長</div>
+            <p class="char-name" id="captainName">---</p>
+            <p class="char-kana" id="captainKana">---</p>
+
+            <div class="position-title">副隊長</div>
+            <p class="char-name" id="lieutenantName">---</p>
+            <p class="char-kana" id="lieutenantKana">---</p>
+        </div>
+
+        <!-- 零番隊専用のすっきり表示エリア（カラーを薄い水色に変更したよ！） -->
+        <div id="specialPosition" style="display: none; text-align: center; padding: 20px 0;">
+            <p class="char-name" id="specialName" style="font-size: 1.8em; color: #87ceeb;">---</p>
+            <p class="char-kana" id="specialKana" style="font-size: 1.0em;">---</p>
+        </div>
+
+        <!-- 三席・五席・隊員などの追加枠がここに自動で入ります -->
+        <div id="dynamicSeats"></div>
+    </div>
+
+<script>
+const squadData = {
+    1: { name: "一番隊", captain: "山本元柳斎重國", captainKana: "やまもとげんりゅうさいしげくに", lieutenant: "？？？", lieutenantKana: "？？？" },
+    2: { name: "二番隊", captain: "？？？", captainKana: "？？？", lieutenant: "？？？", lieutenantKana: "？？？" },
+    3: { name: "三番隊", captain: "市丸ギン", captainKana: "いちまるぎん", lieutenant: "吉良イヅル", lieutenantKana: "きらいづる" },
+    4: { 
+        name: "四番隊", 
+        captain: "卯ノ花烈", 
+        captainKana: "うのはなれつ", 
+        lieutenant: "？？？", 
+        lieutenantKana: "？？？",
+        member: "山田花太郎",
+        memberKana: "やまだはなたろう"
+    },
+    5: { name: "五番隊", captain: "藍染惣右介", captainKana: "あいぜんそうすけ", lieutenant: "雛森桃", lieutenantKana: "ひなもりもも" },
+    6: { name: "六番隊", captain: "朽木白哉", captainKana: "くちきびゃくや", lieutenant: "阿散井恋次", lieutenantKana: "あばらいれんじ" },
+    7: { name: "七番隊", captain: "狛村左陣", captainKana: "こまむらさじん", lieutenant: "射場鉄左衛門", lieutenantKana: "いばてつざえもん" },
+    8: { name: "八番隊", captain: "京楽春水", captainKana: "きょうらくしゅんすい", lieutenant: "伊勢七緒", lieutenantKana: "いせななお" },
+    9: { name: "九番隊", captain: "東仙要", captainKana: "とうせんかなめ", lieutenant: "檜佐木修兵", lieutenantKana: "ひさぎしゅうへい" },
+    10: { name: "十番隊", captain: "日番谷冬獅郎", captainKana: "ひつがやとうしろう", lieutenant: "松本乱菊", lieutenantKana: "まつもとらんぎく" },
+    11: { 
+        name: "十一番隊", 
+        captain: "更木剣八", 
+        captainKana: "ざらきけんぱち", 
+        lieutenant: "草鹿やちる", 
+        lieutenantKana: "くさじしやちる",
+        third: "斑目一角",
+        thirdKana: "まだらめいっかく",
+        fifth: "綾瀬川弓親",
+        fifthKana: "あやせがわゆみちか"
+    },
+    12: { name: "十二番隊", captain: "涅マユリ", captainKana: "くろつちまゆり", lieutenant: "涅ネム", lieutenantKana: "くろつちねむ" },
+    13: { name: "十三番隊", captain: "浮竹十四郎", captainKana: "うきたけじゅうしろう", lieutenant: "？？？", lieutenantKana: "？？？" },
+    
+    0: { 
+        name: "零番隊", 
+        isSpecial: true,
+        specialName: "氷室うつろ", 
+        specialKana: "ひむろうつろ"
+    }
+};
+
+const extraSeats = [
+    { key: 'third', label: '三席' },
+    { key: 'fourth', label: '四席' },
+    { key: 'fifth', label: '五席' },
+    { key: 'member', label: '隊員' }
+];
+
+// ボタン生成
+const btnContainer = document.getElementById('btnContainer');
+const btnOrder = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 0];
+
+btnOrder.forEach(i => {
+    const btn = document.createElement('button');
+    btn.className = 'squad-btn';
+    if (i === 0) {
+        btn.classList.add('zero-btn');
+    }
+    btn.innerText = squadData[i].name;
+    btn.onclick = function() { showSquad(i); };
+    btnContainer.appendChild(btn);
+});
+
+// 情報表示
+function showSquad(num) {
+    const data = squadData[num];
+    document.getElementById('squadName').innerText = data.name;
+
+    const standardBox = document.getElementById('standardPositions');
+    const specialBox = document.getElementById('specialPosition');
+    const dynamicSeats = document.getElementById('dynamicSeats');
+
+    dynamicSeats.innerHTML = '';
+
+    if (data.isSpecial) {
+        standardBox.style.display = 'none';
+        specialBox.style.display = 'block';
+        
+        document.getElementById('specialName').innerText = data.specialName;
+        document.getElementById('specialKana').innerText = data.specialKana;
+    } else {
+        standardBox.style.display = 'block';
+        specialBox.style.display = 'none';
+
+        document.getElementById('captainName').innerText = data.captain;
+        document.getElementById('captainKana').innerText = data.captainKana;
+        document.getElementById('lieutenantName').innerText = data.lieutenant;
+        document.getElementById('lieutenantKana').innerText = data.lieutenantKana;
+
+        extraSeats.forEach(seat => {
+            if (data[seat.key]) {
+                const seatWrapper = document.createElement('div');
+                seatWrapper.className = 'dynamic-position';
+
+                seatWrapper.innerHTML = `
+                    <div class="position-title">${seat.label}</div>
+                    <p class="char-name">${data[seat.key]}</p>
+                    <p class="char-kana">${data[seat.key + 'Kana']}</p>
+                `;
+                dynamicSeats.appendChild(seatWrapper);
+            }
+        });
+    }
+}
+</script>
+
+</body>
+</html>
