@@ -116,6 +116,13 @@
             color: #ccc;
             margin: 0;
         }
+        /* 赤字の（死亡）用のスタイル */
+        .dead-tag {
+            color: #e50914;
+            font-size: 0.85em;
+            margin-left: 8px;
+            font-weight: bold;
+        }
         /* 動的に追加される席官用のエリア */
         .dynamic-position {
             animation: fadeIn 0.3s ease-in-out;
@@ -128,7 +135,7 @@
 </head>
 <body>
 
-    <!-- 見出し（氷室うつろさんを薄い水色に、BLEACH〜を赤にしたよ！） -->
+    <!-- 見出し -->
     <h1>
         <span class="utsuro-highlight">氷室うつろさん</span><br>
         <span class="bleach-highlight">BLEACH Rebirth of Souls 配信用</span><br>
@@ -183,7 +190,8 @@ const squadData = {
         member: "山田花太郎",
         memberKana: "やまだはなたろう"
     },
-    5: { name: "五番隊", captain: "藍染惣右介", captainKana: "あいぜんそうすけ", lieutenant: "雛森桃", lieutenantKana: "ひなもりもも" },
+    // ★藍染惣右介の横に赤字の（死亡）を付け足したよ！
+    5: { name: "五番隊", captain: '藍染惣右介<span class="dead-tag">（死亡）</span>', captainKana: "あいぜんそうすけ", lieutenant: "雛森桃", lieutenantKana: "ひなもりもも" },
     6: { name: "六番隊", captain: "朽木白哉", captainKana: "くちきびゃくや", lieutenant: "阿散井恋次", lieutenantKana: "あばらいれんじ" },
     7: { name: "七番隊", captain: "狛村左陣", captainKana: "こまむらさじん", lieutenant: "射場鉄左衛門", lieutenantKana: "いばてつざえもん" },
     8: { name: "八番隊", captain: "京楽春水", captainKana: "きょうらくしゅんすい", lieutenant: "伊勢七緒", lieutenantKana: "いせななお" },
@@ -254,7 +262,8 @@ function showSquad(num) {
         standardBox.style.display = 'block';
         specialBox.style.display = 'none';
 
-        document.getElementById('captainName').innerText = data.captain;
+        // HTMLタグ（span）を解釈して表示できるように innerText から innerHTML に変更したよ！
+        document.getElementById('captainName').innerHTML = data.captain;
         document.getElementById('captainKana').innerText = data.captainKana;
         document.getElementById('lieutenantName').innerText = data.lieutenant;
         document.getElementById('lieutenantKana').innerText = data.lieutenantKana;
