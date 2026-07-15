@@ -181,13 +181,13 @@
     <!-- 注釈テキストエリア -->
     <div class="notice-text">
         ※氷室うつろさんのBLEACH Rebirth of Souls配信に沿って更新していますので、<br>
-        未登場 of キャラ及び名前の判明していないキャラは「？？？」としております。
+        未登場のキャラ及び名前の判明していないキャラは「？？？」としております。
     </div>
 
     <!-- 隊を選択するボタン（1〜13、零番隊） -->
     <div class="btn-container" id="btnContainer"></div>
 
-    <!-- 元尸魂界関係者ボタンのコンテナ（少し隙間を空けた位置） -->
+    <!-- 元尸魂界関係者ボタンのコンテナ -->
     <div class="ex-relation-container" id="exBtnContainer"></div>
 
     <!-- キャラクター情報が表示される箱 -->
@@ -324,17 +324,17 @@ const squadData = {
         memberZanpakuto: "？？？", memberZanpakutoKana: "？？？"
     },
     
+    // ★零番隊うつろの斬魄刀を「火水殺し」にアップデートしたよ！
     0: { 
         name: "零番隊", 
         isSpecial: true,
         specialName: "氷室うつろ", specialKana: "ひむろうつろ",
-        specialZanpakuto: "？？？", specialZanpakutoKana: "？？？"
+        specialZanpakuto: "火水殺し", specialZanpakutoKana: "かみごろし"
     },
 
     ex: {
-        // ★見出し用の名前に、HTMLタグでルビ（ソウルソサエティ）を組み込んだよ！
         nameHtml: '元<ruby>尸魂界<rt>ソウルソサエティ</rt></ruby>関係者',
-        name: "元尸魂界関係者", // ボタンの文字はシンプルなテキストのままにしておくね
+        name: "元尸魂界関係者",
         isExRelation: true,
         person1: {
             role: "元・護廷十三隊二番隊隊長・隠密機動総司令官及び同第一分隊「刑軍」統括軍団長",
@@ -398,7 +398,6 @@ function makeZanpakutoHTML(name, kana) {
 function showSquad(num) {
     const data = squadData[num];
 
-    // ★もし元関係者なら、HTMLタグ（rubyタグ）を解釈して表示できるように innerHTML を使うよ！
     if (data.nameHtml) {
         document.getElementById('squadName').innerHTML = data.nameHtml;
     } else {
