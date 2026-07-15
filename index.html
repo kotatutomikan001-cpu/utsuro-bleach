@@ -135,6 +135,13 @@
             margin-left: 8px;
             font-weight: bold;
         }
+        /* 白字の（ワビスケ）用のスタイル */
+        .nickname-tag {
+            color: #ffffff;
+            font-size: 0.85em;
+            margin-left: 8px;
+            font-weight: bold;
+        }
         /* 動的に追加される席官用のエリア */
         .dynamic-position {
             animation: fadeIn 0.3s ease-in-out;
@@ -196,8 +203,6 @@
     </div>
 
 <script>
-// ★全員に「斬魄刀」と「よみがな」の枠を設定したよ！
-// 不明なキャラや登場しないキャラはすべて「？？？」を初期値にしてあるよ。
 const squadData = {
     1: { 
         name: "一番隊", 
@@ -213,9 +218,10 @@ const squadData = {
         lieutenant: "？？？", lieutenantKana: "？？？",
         lieutenantZanpakuto: "？？？", lieutenantZanpakutoKana: "？？？"
     },
+    // ★市丸ギンの横の（ワビスケ）を白字（nickname-tag）にしたよ！
     3: { 
         name: "三番隊", 
-        captain: "市丸ギン", captainKana: "いちまるぎん", 
+        captain: '市丸ギン<span class="nickname-tag">（ワビスケ）</span>', captainKana: "いちまるぎん", 
         captainZanpakuto: "神鎗", captainZanpakutoKana: "しんそう",
         lieutenant: "吉良イヅル", lieutenantKana: "きらいづる",
         lieutenantZanpakuto: "侘助", lieutenantZanpakutoKana: "わびすけ"
