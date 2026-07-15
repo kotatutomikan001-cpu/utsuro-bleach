@@ -60,7 +60,18 @@
             justify-content: center;
             max-width: 800px;
             gap: 10px;
+            margin-bottom: 15px;
+        }
+        /* 「元尸魂界関係者」ボタン用の少し離れたエリア */
+        .ex-relation-container {
+            margin-top: 15px;
             margin-bottom: 30px;
+            border-top: 1px dashed #555;
+            padding-top: 15px;
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            justify-content: center;
         }
         /* 各隊のボタン */
         .squad-btn {
@@ -81,6 +92,11 @@
             background-color: #ffc107;
             border-color: #fff;
             color: #000;
+        }
+        /* 元尸魂界関係者ボタンのホバー色（紫） */
+        .ex-btn:hover {
+            background-color: #9c27b0;
+            border-color: #fff;
         }
         /* 情報が表示されるエリア */
         .info-box {
@@ -165,11 +181,14 @@
     <!-- 注釈テキストエリア -->
     <div class="notice-text">
         ※氷室うつろさんのBLEACH Rebirth of Souls配信に沿って更新していますので、<br>
-        未登場のキャラ及び名前の判明していないキャラは「？？？」としております。
+        未登場 of キャラ及び名前の判明していないキャラは「？？？」としております。
     </div>
 
-    <!-- 隊を選択するボタン -->
+    <!-- 隊を選択するボタン（1〜13、零番隊） -->
     <div class="btn-container" id="btnContainer"></div>
+
+    <!-- 元尸魂界関係者ボタンのコンテナ（少し隙間を空けた位置） -->
+    <div class="ex-relation-container" id="exBtnContainer"></div>
 
     <!-- キャラクター情報が表示される箱 -->
     <div class="info-box">
@@ -177,24 +196,25 @@
         
         <!-- 通常表示エリア -->
         <div id="standardPositions">
-            <div class="position-title">隊長</div>
+            <!-- 役職1 -->
+            <div class="position-title" id="roleTitle1">隊長</div>
             <p class="char-name" id="captainName">---</p>
             <p class="char-kana" id="captainKana">---</p>
-            <!-- 斬魄刀表示枠（隊長） -->
             <div id="captainZanpakuto"></div>
 
-            <div class="position-title">副隊長</div>
-            <p class="char-name" id="lieutenantName">---</p>
-            <p class="char-kana" id="lieutenantKana">---</p>
-            <!-- 斬魄刀表示枠（副隊長） -->
-            <div id="lieutenantZanpakuto"></div>
+            <!-- 役職2 -->
+            <div id="role2Container">
+                <div class="position-title" id="roleTitle2">副隊長</div>
+                <p class="char-name" id="lieutenantName">---</p>
+                <p class="char-kana" id="lieutenantKana">---</p>
+                <div id="lieutenantZanpakuto"></div>
+            </div>
         </div>
 
         <!-- 零番隊専用のすっきり表示エリア -->
         <div id="specialPosition" style="display: none; text-align: center; padding: 20px 0;">
             <p class="char-name" id="specialName" style="font-size: 1.8em; color: #87ceeb;">---</p>
             <p class="char-kana" id="specialKana" style="font-size: 1.0em;">---</p>
-            <!-- 斬魄刀表示枠（零番隊） -->
             <div id="specialZanpakuto"></div>
         </div>
 
@@ -220,7 +240,7 @@ const squadData = {
     },
     3: { 
         name: "三番隊", 
-        captain: '市丸ギン<span class="nickname-tag">（ワビスケ）</span>', captainKana: "いちまるぎん", 
+        captain: '市丸ギン<span class="nickname-tag">（ワビスケ）</span>', captainKana: "いちまるぎん",
         captainZanpakuto: "神鎗", captainZanpakutoKana: "しんそう",
         lieutenant: "吉良イヅル", lieutenantKana: "きらいづる",
         lieutenantZanpakuto: "侘助", lieutenantZanpakutoKana: "わびすけ"
@@ -243,7 +263,7 @@ const squadData = {
     },
     6: { 
         name: "六番隊", 
-        captain: "朽木白哉", captainKana: "くちきびゃくや",  /* ←ここを正しく修正したよ！ */
+        captain: "朽木白哉", captainKana: "くちきびゃくや", 
         captainZanpakuto: "千本桜", captainZanpakutoKana: "せんぼんざくら",
         lieutenant: "阿散井恋次", lieutenantKana: "あばらいれんじ",
         lieutenantZanpakuto: "蛇尾丸", lieutenantZanpakutoKana: "ざびまる"
@@ -309,6 +329,27 @@ const squadData = {
         isSpecial: true,
         specialName: "氷室うつろ", specialKana: "ひむろうつろ",
         specialZanpakuto: "？？？", specialZanpakutoKana: "？？？"
+    },
+
+    ex: {
+        // ★見出し用の名前に、HTMLタグでルビ（ソウルソサエティ）を組み込んだよ！
+        nameHtml: '元<ruby>尸魂界<rt>ソウルソサエティ</rt></ruby>関係者',
+        name: "元尸魂界関係者", // ボタンの文字はシンプルなテキストのままにしておくね
+        isExRelation: true,
+        person1: {
+            role: "元・護廷十三隊二番隊隊長・隠密機動総司令官及び同第一分隊「刑軍」統括軍団長",
+            name: "四楓院夜一",
+            kana: "しほういんよるいち",
+            zanpakuto: "？？？",
+            zanpakutoKana: "？？？"
+        },
+        person2: {
+            role: "元・護廷十三隊十二番隊隊長・技術開発局初代局長",
+            name: "浦原喜助",
+            kana: "うらはらきすけ",
+            zanpakuto: "？？？",
+            zanpakutoKana: "？？？"
+        }
     }
 };
 
@@ -319,7 +360,7 @@ const extraSeats = [
     { key: 'member', label: '隊員' }
 ];
 
-// ボタン生成
+// 通常・零番隊的ボタン生成
 const btnContainer = document.getElementById('btnContainer');
 const btnOrder = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 0];
 
@@ -333,6 +374,14 @@ btnOrder.forEach(i => {
     btn.onclick = function() { showSquad(i); };
     btnContainer.appendChild(btn);
 });
+
+// 元関係者ボタン生成
+const exBtnContainer = document.getElementById('exBtnContainer');
+const exBtn = document.createElement('button');
+exBtn.className = 'squad-btn ex-btn';
+exBtn.innerText = squadData["ex"].name;
+exBtn.onclick = function() { showSquad("ex"); };
+exBtnContainer.appendChild(exBtn);
 
 // 斬魄刀のHTMLを生成するヘルパー関数
 function makeZanpakutoHTML(name, kana) {
@@ -348,43 +397,71 @@ function makeZanpakutoHTML(name, kana) {
 // 情報表示
 function showSquad(num) {
     const data = squadData[num];
-    document.getElementById('squadName').innerText = data.name;
+
+    // ★もし元関係者なら、HTMLタグ（rubyタグ）を解釈して表示できるように innerHTML を使うよ！
+    if (data.nameHtml) {
+        document.getElementById('squadName').innerHTML = data.nameHtml;
+    } else {
+        document.getElementById('squadName').innerText = data.name;
+    }
 
     const standardBox = document.getElementById('standardPositions');
     const specialBox = document.getElementById('specialPosition');
     const dynamicSeats = document.getElementById('dynamicSeats');
+    const role2Container = document.getElementById('role2Container');
 
-    // 斬魄刀エリアを一度初期化
+    // 初期化
     document.getElementById('captainZanpakuto').innerHTML = '';
     document.getElementById('lieutenantZanpakuto').innerHTML = '';
     document.getElementById('specialZanpakuto').innerHTML = '';
     dynamicSeats.innerHTML = '';
+    role2Container.style.display = 'block';
 
     if (data.isSpecial) {
+        // 零番隊うつろ専用
         standardBox.style.display = 'none';
         specialBox.style.display = 'block';
         
         document.getElementById('specialName').innerText = data.specialName;
         document.getElementById('specialKana').innerText = data.specialKana;
 
-        // 零番隊うつろの斬魄刀表示
         if (data.specialZanpakuto) {
             document.getElementById('specialZanpakuto').innerHTML = makeZanpakutoHTML(data.specialZanpakuto, data.specialZanpakutoKana);
         }
-    } else {
+    } else if (data.isExRelation) {
+        // 元関係者専用
         standardBox.style.display = 'block';
         specialBox.style.display = 'none';
+
+        // 役職1に夜一さんを設定
+        document.getElementById('roleTitle1').innerText = data.person1.role;
+        document.getElementById('captainName').innerText = data.person1.name;
+        document.getElementById('captainKana').innerText = data.person1.kana;
+        document.getElementById('captainZanpakuto').innerHTML = makeZanpakutoHTML(data.person1.zanpakuto, data.person1.zanpakutoKana);
+
+        // 役職2に喜助さんを設定
+        document.getElementById('roleTitle2').innerText = data.person2.role;
+        document.getElementById('lieutenantName').innerText = data.person2.name;
+        document.getElementById('lieutenantKana').innerText = data.person2.kana;
+        document.getElementById('lieutenantZanpakuto').innerHTML = makeZanpakutoHTML(data.person2.zanpakuto, data.person2.zanpakutoKana);
+
+    } else {
+        // 通常の護廷十三隊
+        standardBox.style.display = 'block';
+        specialBox.style.display = 'none';
+
+        // 役職タイトルをデフォルトに戻す
+        document.getElementById('roleTitle1').innerText = "隊長";
+        document.getElementById('roleTitle2').innerText = "副隊長";
 
         document.getElementById('captainName').innerHTML = data.captain;
         document.getElementById('captainKana').innerText = data.captainKana;
         document.getElementById('lieutenantName').innerText = data.lieutenant;
         document.getElementById('lieutenantKana').innerText = data.lieutenantKana;
 
-        // 隊長の斬魄刀表示
         if (data.captainZanpakuto) {
             document.getElementById('captainZanpakuto').innerHTML = makeZanpakutoHTML(data.captainZanpakuto, data.captainZanpakutoKana);
         }
-        // 副隊長の斬魄刀表示
         if (data.lieutenantZanpakuto) {
             document.getElementById('lieutenantZanpakuto').innerHTML = makeZanpakutoHTML(data.lieutenantZanpakuto, data.lieutenantZanpakutoKana);
         }
@@ -395,7 +472,6 @@ function showSquad(num) {
                 const seatWrapper = document.createElement('div');
                 seatWrapper.className = 'dynamic-position';
 
-                // 席官にも斬魄刀が登録されていたら表示する仕組み
                 const hasZanpakuto = data[seat.key + 'Zanpakuto'];
                 const zanpakutoHTML = hasZanpakuto ? makeZanpakutoHTML(data[seat.key + 'Zanpakuto'], data[seat.key + 'ZanpakutoKana']) : '';
 
