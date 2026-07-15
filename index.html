@@ -138,6 +138,7 @@
         /* 動的に追加される席官用のエリア */
         .dynamic-position {
             animation: fadeIn 0.3s ease-in-out;
+            margin-bottom: 10px;
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-5px); }
@@ -195,97 +196,112 @@
     </div>
 
 <script>
+// ★全員に「斬魄刀」と「よみがな」の枠を設定したよ！
+// 不明なキャラや登場しないキャラはすべて「？？？」を初期値にしてあるよ。
 const squadData = {
     1: { 
         name: "一番隊", 
-        captain: "山本元柳斎重國", 
-        captainKana: "やまもとげんりゅうさいしげくに", 
-        captainZanpakuto: "？？？",
-        captainZanpakutoKana: "？？？",
-        lieutenant: "？？？", 
-        lieutenantKana: "？？？" 
+        captain: "山本元柳斎重國", captainKana: "やまもとげんりゅうさいしげくに", 
+        captainZanpakuto: "？？？", captainZanpakutoKana: "？？？",
+        lieutenant: "？？？", lieutenantKana: "？？？",
+        lieutenantZanpakuto: "？？？", lieutenantZanpakutoKana: "？？？"
     },
-    2: { name: "二番隊", captain: "？？？", captainKana: "？？？", lieutenant: "？？？", lieutenantKana: "？？？" },
+    2: { 
+        name: "二番隊", 
+        captain: "？？？", captainKana: "？？？", 
+        captainZanpakuto: "？？？", captainZanpakutoKana: "？？？",
+        lieutenant: "？？？", lieutenantKana: "？？？",
+        lieutenantZanpakuto: "？？？", lieutenantZanpakutoKana: "？？？"
+    },
     3: { 
         name: "三番隊", 
-        captain: "市丸ギン", 
-        captainKana: "いちまるぎん", 
-        captainZanpakuto: "神鎗",
-        captainZanpakutoKana: "しんそう",
-        lieutenant: "吉良イヅル", 
-        lieutenantKana: "きらいづる",
-        lieutenantZanpakuto: "侘助",
-        lieutenantZanpakutoKana: "わびすけ"
+        captain: "市丸ギン", captainKana: "いちまるぎん", 
+        captainZanpakuto: "神鎗", captainZanpakutoKana: "しんそう",
+        lieutenant: "吉良イヅル", lieutenantKana: "きらいづる",
+        lieutenantZanpakuto: "侘助", lieutenantZanpakutoKana: "わびすけ"
     },
     4: { 
         name: "四番隊", 
-        captain: "卯ノ花烈", 
-        captainKana: "うのはなれつ", 
-        lieutenant: "？？？", 
-        lieutenantKana: "？？？",
-        member: "山田花太郎",
-        memberKana: "やまだはなたろう"
+        captain: "卯ノ花烈", captainKana: "うのはなれつ", 
+        captainZanpakuto: "？？？", captainZanpakutoKana: "？？？",
+        lieutenant: "？？？", lieutenantKana: "？？？",
+        lieutenantZanpakuto: "？？？", lieutenantZanpakutoKana: "？？？",
+        member: "山田花太郎", memberKana: "やまだはなたろう",
+        memberZanpakuto: "？？？", memberZanpakutoKana: "？？？"
     },
     5: { 
         name: "五番隊", 
-        captain: '藍染惣右介<span class="dead-tag">（死亡）</span>', 
-        captainKana: "あいぜんそうすけ", 
-        lieutenant: "雛森桃", 
-        lieutenantKana: "ひなもりもも",
-        // 雛森桃に飛梅を追加！
-        lieutenantZanpakuto: "飛梅",
-        lieutenantZanpakutoKana: "とびうめ"
+        captain: '藍染惣右介<span class="dead-tag">（死亡）</span>', captainKana: "あいぜんそうすけ", 
+        captainZanpakuto: "？？？", captainZanpakutoKana: "？？？",
+        lieutenant: "雛森桃", lieutenantKana: "ひなもりもも",
+        lieutenantZanpakuto: "飛梅", lieutenantZanpakutoKana: "とびうめ"
     },
     6: { 
         name: "六番隊", 
-        captain: "朽木白哉", 
-        captainKana: "くちきびゃくや", 
-        // 朽木白哉に千本桜を追加！
-        captainZanpakuto: "千本桜",
-        captainZanpakutoKana: "せんぼんざくら",
-        lieutenant: "阿散井恋次", 
-        lieutenantKana: "あばらいれんじ",
-        // 阿散井恋次に蛇尾丸を追加！
-        lieutenantZanpakuto: "蛇尾丸",
-        lieutenantZanpakutoKana: "ざびまる"
+        captain: "朽木白哉", captainKana: "くちきびゃくや", 
+        captainZanpakuto: "千本桜", captainZanpakutoKana: "せんぼんざくら",
+        lieutenant: "阿散井恋次", lieutenantKana: "あばらいれんじ",
+        lieutenantZanpakuto: "蛇尾丸", lieutenantZanpakutoKana: "ざびまる"
     },
-    7: { name: "七番隊", captain: "狛村左陣", captainKana: "こまむらさじん", lieutenant: "射場鉄左衛門", lieutenantKana: "いばてつざえもん" },
-    8: { name: "八番隊", captain: "京楽春水", captainKana: "きょうらくしゅんすい", lieutenant: "伊勢七緒", lieutenantKana: "いせななお" },
-    9: { name: "九番隊", captain: "東仙要", captainKana: "とうせんかなめ", lieutenant: "檜佐木修兵", lieutenantKana: "ひさぎしゅうへい" },
-    10: { name: "十番隊", captain: "日番谷冬獅郎", captainKana: "ひつがやとうしろう", lieutenant: "松本乱菊", lieutenantKana: "まつもとらんぎく" },
+    7: { 
+        name: "七番隊", 
+        captain: "狛村左陣", captainKana: "こまむらさじん", 
+        captainZanpakuto: "？？？", captainZanpakutoKana: "？？？",
+        lieutenant: "射場鉄左衛門", lieutenantKana: "いばてつざえもん",
+        lieutenantZanpakuto: "？？？", lieutenantZanpakutoKana: "？？？"
+    },
+    8: { 
+        name: "八番隊", 
+        captain: "京楽春水", captainKana: "きょうらくしゅんすい", 
+        captainZanpakuto: "？？？", captainZanpakutoKana: "？？？",
+        lieutenant: "伊勢七緒", lieutenantKana: "いせななお",
+        lieutenantZanpakuto: "？？？", lieutenantZanpakutoKana: "？？？"
+    },
+    9: { 
+        name: "九番隊", 
+        captain: "東仙要", captainKana: "とうせんかなめ", 
+        captainZanpakuto: "？？？", captainZanpakutoKana: "？？？",
+        lieutenant: "檜佐木修兵", lieutenantKana: "ひさぎしゅうへい",
+        lieutenantZanpakuto: "？？？", lieutenantZanpakutoKana: "？？？"
+    },
+    10: { 
+        name: "十番隊", 
+        captain: "日番谷冬獅郎", captainKana: "ひつがやとうしろう", 
+        captainZanpakuto: "？？？", captainZanpakutoKana: "？？？",
+        lieutenant: "松本乱菊", lieutenantKana: "まつもとらんぎく",
+        lieutenantZanpakuto: "？？？", lieutenantZanpakutoKana: "？？？"
+    },
     11: { 
         name: "十一番隊", 
-        captain: "更木剣八", 
-        captainKana: "ざらきけんぱち", 
-        lieutenant: "草鹿やちる", 
-        lieutenantKana: "くさじしやちる",
-        third: "斑目一角",
-        thirdKana: "まだらめいっかく",
-        // 班目一角に鬼灯丸を追加！
-        thirdZanpakuto: "鬼灯丸",
-        thirdZanpakutoKana: "ほおずきまる",
-        fifth: "綾瀬川弓親",
-        fifthKana: "あやせがわゆみちか"
+        captain: "更木剣八", captainKana: "ざらきけんぱち", 
+        captainZanpakuto: "？？？", captainZanpakutoKana: "？？？",
+        lieutenant: "草鹿やちる", lieutenantKana: "くさじしやちる",
+        lieutenantZanpakuto: "？？？", lieutenantZanpakutoKana: "？？？",
+        third: "斑目一角", thirdKana: "まだらめいっかく",
+        thirdZanpakuto: "鬼灯丸", thirdZanpakutoKana: "ほおずきまる",
+        fifth: "綾瀬川弓親", fifthKana: "あやせがわゆみちか",
+        fifthZanpakuto: "？？？", fifthZanpakutoKana: "？？？"
     },
     12: { 
         name: "十二番隊", 
-        captain: "涅マユリ", 
-        captainKana: "くろつちまゆり", 
-        // 涅マユリに疋殺地蔵を追加！
-        captainZanpakuto: "疋殺地蔵",
-        captainZanpakutoKana: "あしそぎじぞう",
-        lieutenant: "涅ネム", 
-        lieutenantKana: "くろつちねむ" 
+        captain: "涅マユリ", captainKana: "くろつちまゆり", 
+        captainZanpakuto: "疋殺地蔵", captainZanpakutoKana: "あしそぎじぞう",
+        lieutenant: "涅ネム", lieutenantKana: "くろつちねむ",
+        lieutenantZanpakuto: "？？？", lieutenantZanpakutoKana: "？？？"
     },
-    13: { name: "十三番隊", captain: "浮竹十四郎", captainKana: "うきたけじゅうしろう", lieutenant: "？？？", lieutenantKana: "？？？" },
+    13: { 
+        name: "十三番隊", 
+        captain: "浮竹十四郎", captainKana: "うきたけじゅうしろう", 
+        captainZanpakuto: "？？？", captainZanpakutoKana: "？？？",
+        lieutenant: "？？？", lieutenantKana: "？？？",
+        lieutenantZanpakuto: "？？？", lieutenantZanpakutoKana: "？？？"
+    },
     
     0: { 
         name: "零番隊", 
         isSpecial: true,
-        specialName: "氷室うつろ", 
-        specialKana: "ひむろうつろ",
-        specialZanpakuto: "？？？",
-        specialZanpakutoKana: "？？？"
+        specialName: "氷室うつろ", specialKana: "ひむろうつろ",
+        specialZanpakuto: "？？？", specialZanpakutoKana: "？？？"
     }
 };
 
