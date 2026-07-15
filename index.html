@@ -116,6 +116,18 @@
             color: #ccc;
             margin: 0;
         }
+        /* 斬魄刀表示用のスタイル */
+        .zanpakuto-area {
+            font-size: 0.9em;
+            color: #00bcd4;
+            margin: 2px 0 0 0;
+            font-weight: bold;
+        }
+        .zanpakuto-kana {
+            font-size: 0.7em;
+            color: #80deea;
+            margin: 0;
+        }
         /* 赤字の（死亡）用のスタイル */
         .dead-tag {
             color: #e50914;
@@ -160,16 +172,22 @@
             <div class="position-title">隊長</div>
             <p class="char-name" id="captainName">---</p>
             <p class="char-kana" id="captainKana">---</p>
+            <!-- 斬魄刀表示枠（隊長） -->
+            <div id="captainZanpakuto"></div>
 
             <div class="position-title">副隊長</div>
             <p class="char-name" id="lieutenantName">---</p>
             <p class="char-kana" id="lieutenantKana">---</p>
+            <!-- 斬魄刀表示枠（副隊長） -->
+            <div id="lieutenantZanpakuto"></div>
         </div>
 
         <!-- 零番隊専用のすっきり表示エリア -->
         <div id="specialPosition" style="display: none; text-align: center; padding: 20px 0;">
             <p class="char-name" id="specialName" style="font-size: 1.8em; color: #87ceeb;">---</p>
             <p class="char-kana" id="specialKana" style="font-size: 1.0em;">---</p>
+            <!-- 斬魄刀表示枠（零番隊） -->
+            <div id="specialZanpakuto"></div>
         </div>
 
         <!-- 三席・五席・隊員などの追加枠がここに自動で入ります -->
@@ -178,9 +196,27 @@
 
 <script>
 const squadData = {
-    1: { name: "一番隊", captain: "山本元柳斎重國", captainKana: "やまもとげんりゅうさいしげくに", lieutenant: "？？？", lieutenantKana: "？？？" },
+    1: { 
+        name: "一番隊", 
+        captain: "山本元柳斎重國", 
+        captainKana: "やまもとげんりゅうさいしげくに", 
+        captainZanpakuto: "？？？",
+        captainZanpakutoKana: "？？？",
+        lieutenant: "？？？", 
+        lieutenantKana: "？？？" 
+    },
     2: { name: "二番隊", captain: "？？？", captainKana: "？？？", lieutenant: "？？？", lieutenantKana: "？？？" },
-    3: { name: "三番隊", captain: "市丸ギン", captainKana: "いちまるぎん", lieutenant: "吉良イヅル", lieutenantKana: "きらいづる" },
+    3: { 
+        name: "三番隊", 
+        captain: "市丸ギン", 
+        captainKana: "いちまるぎん", 
+        captainZanpakuto: "神鎗",
+        captainZanpakutoKana: "しんそう",
+        lieutenant: "吉良イヅル", 
+        lieutenantKana: "きらいづる",
+        lieutenantZanpakuto: "侘助",
+        lieutenantZanpakutoKana: "わびすけ"
+    },
     4: { 
         name: "四番隊", 
         captain: "卯ノ花烈", 
@@ -190,9 +226,29 @@ const squadData = {
         member: "山田花太郎",
         memberKana: "やまだはなたろう"
     },
-    // ★藍染惣右介の横に赤字の（死亡）を付け足したよ！
-    5: { name: "五番隊", captain: '藍染惣右介<span class="dead-tag">（死亡）</span>', captainKana: "あいぜんそうすけ", lieutenant: "雛森桃", lieutenantKana: "ひなもりもも" },
-    6: { name: "六番隊", captain: "朽木白哉", captainKana: "くちきびゃくや", lieutenant: "阿散井恋次", lieutenantKana: "あばらいれんじ" },
+    5: { 
+        name: "五番隊", 
+        captain: '藍染惣右介<span class="dead-tag">（死亡）</span>', 
+        captainKana: "あいぜんそうすけ", 
+        lieutenant: "雛森桃", 
+        lieutenantKana: "ひなもりもも",
+        // 雛森桃に飛梅を追加！
+        lieutenantZanpakuto: "飛梅",
+        lieutenantZanpakutoKana: "とびうめ"
+    },
+    6: { 
+        name: "六番隊", 
+        captain: "朽木白哉", 
+        captainKana: "くちきびゃくや", 
+        // 朽木白哉に千本桜を追加！
+        captainZanpakuto: "千本桜",
+        captainZanpakutoKana: "せんぼんざくら",
+        lieutenant: "阿散井恋次", 
+        lieutenantKana: "あばらいれんじ",
+        // 阿散井恋次に蛇尾丸を追加！
+        lieutenantZanpakuto: "蛇尾丸",
+        lieutenantZanpakutoKana: "ざびまる"
+    },
     7: { name: "七番隊", captain: "狛村左陣", captainKana: "こまむらさじん", lieutenant: "射場鉄左衛門", lieutenantKana: "いばてつざえもん" },
     8: { name: "八番隊", captain: "京楽春水", captainKana: "きょうらくしゅんすい", lieutenant: "伊勢七緒", lieutenantKana: "いせななお" },
     9: { name: "九番隊", captain: "東仙要", captainKana: "とうせんかなめ", lieutenant: "檜佐木修兵", lieutenantKana: "ひさぎしゅうへい" },
@@ -205,17 +261,31 @@ const squadData = {
         lieutenantKana: "くさじしやちる",
         third: "斑目一角",
         thirdKana: "まだらめいっかく",
+        // 班目一角に鬼灯丸を追加！
+        thirdZanpakuto: "鬼灯丸",
+        thirdZanpakutoKana: "ほおずきまる",
         fifth: "綾瀬川弓親",
         fifthKana: "あやせがわゆみちか"
     },
-    12: { name: "十二番隊", captain: "涅マユリ", captainKana: "くろつちまゆり", lieutenant: "涅ネム", lieutenantKana: "くろつちねむ" },
+    12: { 
+        name: "十二番隊", 
+        captain: "涅マユリ", 
+        captainKana: "くろつちまゆり", 
+        // 涅マユリに疋殺地蔵を追加！
+        captainZanpakuto: "疋殺地蔵",
+        captainZanpakutoKana: "あしそぎじぞう",
+        lieutenant: "涅ネム", 
+        lieutenantKana: "くろつちねむ" 
+    },
     13: { name: "十三番隊", captain: "浮竹十四郎", captainKana: "うきたけじゅうしろう", lieutenant: "？？？", lieutenantKana: "？？？" },
     
     0: { 
         name: "零番隊", 
         isSpecial: true,
         specialName: "氷室うつろ", 
-        specialKana: "ひむろうつろ"
+        specialKana: "ひむろうつろ",
+        specialZanpakuto: "？？？",
+        specialZanpakutoKana: "？？？"
     }
 };
 
@@ -241,6 +311,17 @@ btnOrder.forEach(i => {
     btnContainer.appendChild(btn);
 });
 
+// 斬魄刀のHTMLを生成するヘルパー関数
+function makeZanpakutoHTML(name, kana) {
+    if (!name) return '';
+    return `
+        <div class="dynamic-position">
+            <p class="zanpakuto-area">斬魄刀: ${name}</p>
+            <p class="zanpakuto-kana">${kana || ''}</p>
+        </div>
+    `;
+}
+
 // 情報表示
 function showSquad(num) {
     const data = squadData[num];
@@ -250,6 +331,10 @@ function showSquad(num) {
     const specialBox = document.getElementById('specialPosition');
     const dynamicSeats = document.getElementById('dynamicSeats');
 
+    // 斬魄刀エリアを一度初期化
+    document.getElementById('captainZanpakuto').innerHTML = '';
+    document.getElementById('lieutenantZanpakuto').innerHTML = '';
+    document.getElementById('specialZanpakuto').innerHTML = '';
     dynamicSeats.innerHTML = '';
 
     if (data.isSpecial) {
@@ -258,25 +343,44 @@ function showSquad(num) {
         
         document.getElementById('specialName').innerText = data.specialName;
         document.getElementById('specialKana').innerText = data.specialKana;
+
+        // 零番隊うつろの斬魄刀表示
+        if (data.specialZanpakuto) {
+            document.getElementById('specialZanpakuto').innerHTML = makeZanpakutoHTML(data.specialZanpakuto, data.specialZanpakutoKana);
+        }
     } else {
         standardBox.style.display = 'block';
         specialBox.style.display = 'none';
 
-        // HTMLタグ（span）を解釈して表示できるように innerText から innerHTML に変更したよ！
         document.getElementById('captainName').innerHTML = data.captain;
         document.getElementById('captainKana').innerText = data.captainKana;
         document.getElementById('lieutenantName').innerText = data.lieutenant;
         document.getElementById('lieutenantKana').innerText = data.lieutenantKana;
 
+        // 隊長の斬魄刀表示
+        if (data.captainZanpakuto) {
+            document.getElementById('captainZanpakuto').innerHTML = makeZanpakutoHTML(data.captainZanpakuto, data.captainZanpakutoKana);
+        }
+        // 副隊長の斬魄刀表示
+        if (data.lieutenantZanpakuto) {
+            document.getElementById('lieutenantZanpakuto').innerHTML = makeZanpakutoHTML(data.lieutenantZanpakuto, data.lieutenantZanpakutoKana);
+        }
+
+        // 席官・隊員（およびその斬魄刀）の表示
         extraSeats.forEach(seat => {
             if (data[seat.key]) {
                 const seatWrapper = document.createElement('div');
                 seatWrapper.className = 'dynamic-position';
 
+                // 席官にも斬魄刀が登録されていたら表示する仕組み
+                const hasZanpakuto = data[seat.key + 'Zanpakuto'];
+                const zanpakutoHTML = hasZanpakuto ? makeZanpakutoHTML(data[seat.key + 'Zanpakuto'], data[seat.key + 'ZanpakutoKana']) : '';
+
                 seatWrapper.innerHTML = `
                     <div class="position-title">${seat.label}</div>
                     <p class="char-name">${data[seat.key]}</p>
                     <p class="char-kana">${data[seat.key + 'Kana']}</p>
+                    ${zanpakutoHTML}
                 `;
                 dynamicSeats.appendChild(seatWrapper);
             }
