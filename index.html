@@ -158,6 +158,11 @@
             margin-left: 8px;
             font-weight: bold;
         }
+        /* 「火水殺し」専用のカラータグ */
+        .fire-char { color: #e50914; }      /* 火・か = 赤 */
+        .water-char { color: #87ceeb; }     /* 水・み = 水色 */
+        .kill-char { color: #ffffff; }      /* 殺し・ごろし = 白 */
+
         /* 動的に追加される席官用のエリア */
         .dynamic-position {
             animation: fadeIn 0.3s ease-in-out;
@@ -324,12 +329,13 @@ const squadData = {
         memberZanpakuto: "？？？", memberZanpakutoKana: "？？？"
     },
     
-    // ★零番隊うつろの斬魄刀を「火水殺し」にアップデートしたよ！
+    // ★「火水殺し」と「かみごろし」を特別カラフル仕様にタグ付けしたよ！
     0: { 
         name: "零番隊", 
         isSpecial: true,
         specialName: "氷室うつろ", specialKana: "ひむろうつろ",
-        specialZanpakuto: "火水殺し", specialZanpakutoKana: "かみごろし"
+        specialZanpakuto: '<span class="fire-char">火</span><span class="water-char">水</span><span class="kill-char">殺し</span>', 
+        specialZanpakutoKana: '<span class="fire-char">か</span><span class="water-char">み</span><span class="kill-char">ごろし</span>'
     },
 
     ex: {
@@ -383,7 +389,7 @@ exBtn.innerText = squadData["ex"].name;
 exBtn.onclick = function() { showSquad("ex"); };
 exBtnContainer.appendChild(exBtn);
 
-// 斬魄刀のHTMLを生成するヘルパー関数
+// 斬魄刀のHTMLを生成するヘルパー関数（特別仕様のHTMLタグを解釈して出力するために innerHTML に対応させるよ）
 function makeZanpakutoHTML(name, kana) {
     if (!name) return '';
     return `
@@ -424,6 +430,7 @@ function showSquad(num) {
         document.getElementById('specialName').innerText = data.specialName;
         document.getElementById('specialKana').innerText = data.specialKana;
 
+        // ★特別色のHTMLタグをそのまま読み込んで表示するようにしたよ！
         if (data.specialZanpakuto) {
             document.getElementById('specialZanpakuto').innerHTML = makeZanpakutoHTML(data.specialZanpakuto, data.specialZanpakutoKana);
         }
