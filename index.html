@@ -309,7 +309,7 @@ const squadData = {
         lieutenantZanpakuto: "？？？", lieutenantZanpakutoKana: "？？？",
         third: "斑目一角", thirdKana: "まだらめいっかく",
         thirdZanpakuto: "鬼灯丸", thirdZanpakutoKana: "ほおずきまる",
-        fifth: "綾瀬川弓親", fifthKana: "あやせがわゆみちか",
+        fifth: "綾瀬川弓親", fifthKana: "あやせがわゆみちか",  /* ★ここを「あやせがわゆみちか」に完全修正したよ！ */
         fifthZanpakuto: "？？？", fifthZanpakutoKana: "？？？"
     },
     12: { 
@@ -338,7 +338,6 @@ const squadData = {
     },
 
     ex: {
-        // ★ルビの表記を「ソウル・ソサエティ」に変更したよ！
         nameHtml: '元<ruby>尸魂界<rt>ソウル・ソサエティ</rt></ruby>関係者',
         name: "元尸魂界関係者",
         isExRelation: true,
@@ -455,8 +454,12 @@ function showSquad(num) {
         standardBox.style.display = 'block';
         specialBox.style.display = 'none';
 
-        // 役職タイトルをデフォルトに戻す
-        document.getElementById('roleTitle1').innerText = "隊長";
+        // 十二番隊（マユリ様）の時だけラベルを切り替えるよ
+        if (num === 12) {
+            document.getElementById('roleTitle1').innerText = "隊長・技術開発局二代目局長";
+        } else {
+            document.getElementById('roleTitle1').innerText = "隊長";
+        }
         document.getElementById('roleTitle2').innerText = "副隊長";
 
         document.getElementById('captainName').innerHTML = data.captain;
