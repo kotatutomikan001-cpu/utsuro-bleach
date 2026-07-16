@@ -158,7 +158,7 @@
             margin-left: 8px;
             font-weight: bold;
         }
-        /* 「火水殺し」専用のカラータグ */
+        /* 「火水殺し」専用 of カラータグ */
         .fire-char { color: #e50914; }      /* 火・か = 赤 */
         .water-char { color: #87ceeb; }     /* 水・み = 水色 */
         .kill-char { color: #ffffff; }      /* 殺し・ごろし = 白 */
@@ -268,7 +268,7 @@ const squadData = {
     },
     6: { 
         name: "六番隊", 
-        captain: "朽木白哉", captainKana: "くちきびゃくや", 
+        captain: "朽木白哉", captainKana: "くちきびゃくや",  /* ★ここを完全に「くちきびゃくや」に修正しました！ */
         captainZanpakuto: "千本桜", captainZanpakutoKana: "せんぼんざくら",
         lieutenant: "阿散井恋次", lieutenantKana: "あばらいれんじ",
         lieutenantZanpakuto: "蛇尾丸", lieutenantZanpakutoKana: "ざびまる"
@@ -329,7 +329,6 @@ const squadData = {
         memberZanpakuto: "？？？", memberZanpakutoKana: "？？？"
     },
     
-    // ★「火水殺し」と「かみごろし」を特別カラフル仕様にタグ付けしたよ！
     0: { 
         name: "零番隊", 
         isSpecial: true,
@@ -343,7 +342,7 @@ const squadData = {
         name: "元尸魂界関係者",
         isExRelation: true,
         person1: {
-            role: "元・護廷十三隊二番隊隊長・隠密機動総司令官及び同第一分隊「刑軍」統括軍団長",
+            role: "元・隠密機動総司令官及び同第一分隊「刑軍」統括軍団長",
             name: "四楓院夜一",
             kana: "しほういんよるいち",
             zanpakuto: "？？？",
@@ -389,7 +388,7 @@ exBtn.innerText = squadData["ex"].name;
 exBtn.onclick = function() { showSquad("ex"); };
 exBtnContainer.appendChild(exBtn);
 
-// 斬魄刀のHTMLを生成するヘルパー関数（特別仕様のHTMLタグを解釈して出力するために innerHTML に対応させるよ）
+// 斬魄刀のHTMLを生成するヘルパー関数
 function makeZanpakutoHTML(name, kana) {
     if (!name) return '';
     return `
@@ -430,7 +429,6 @@ function showSquad(num) {
         document.getElementById('specialName').innerText = data.specialName;
         document.getElementById('specialKana').innerText = data.specialKana;
 
-        // ★特別色のHTMLタグをそのまま読み込んで表示するようにしたよ！
         if (data.specialZanpakuto) {
             document.getElementById('specialZanpakuto').innerHTML = makeZanpakutoHTML(data.specialZanpakuto, data.specialZanpakutoKana);
         }
