@@ -320,7 +320,7 @@
         <span class="utsuro-highlight">氷室うつろさん</span><br>
         <span class="bleach-highlight">BLEACH Rebirth of Souls 配信用</span><br>
         組織一覧表
-        <span class="stream-date-sub">※7月22日配信現在</span>
+        <span class="stream-date-sub">※8月1日配信現在</span>
     </h1>
 
     <div class="notice-text">
@@ -374,7 +374,7 @@ const squadData = {
         name: "一番隊", 
         role1: "隊長・護廷十三隊総隊長",
         captain: "山本元柳斎重國", captainKana: "やまもとげんりゅうさいしげくに", 
-        captainZanpakuto: "？？？", captainZanpakutoKana: "？？？",
+        captainZanpakuto: "流刃若火", captainZanpakutoKana: "りゅうじんじゃっか",
         lieutenant: "？？？", lieutenantKana: "？？？",
         lieutenantZanpakuto: "？？？", lieutenantZanpakutoKana: "？？？"
     },
@@ -409,7 +409,7 @@ const squadData = {
         name: "五番隊", 
         getCaptain: () => isKyokasuigetsuActivated 
             ? '藍染惣右介<span class="dead-tag" style="text-decoration: line-through; opacity: 0.6;">（死亡）</span><span class="dead-tag">（離反）</span>' 
-            : '藍染惣右介<span class="dead-tag">（死亡）</span>',
+            : '藍染惣右介<span class="dead-tag interactive-tag" onclick="triggerKyokasuigetsu(event)">（死亡）</span>',
         captainKana: "あいぜんそうすけ", 
         captainZanpakuto: "？？？", captainZanpakutoKana: "？？？",
         lieutenant: "雛森桃", lieutenantKana: "ひなもりもも",
@@ -435,7 +435,7 @@ const squadData = {
     8: { 
         name: "八番隊", 
         captain: "京楽春水", captainKana: "きょうらくしゅんすい", 
-        captainZanpakuto: "？？？", captainZanpakutoKana: "？？？",
+        captainZanpakuto: "花天狂骨", captainZanpakutoKana: "かてんきょうこつ",
         lieutenant: "伊勢七緒", lieutenantKana: "いせななお",
         lieutenantZanpakuto: "？？？", lieutenantZanpakutoKana: "？？？"
     },
@@ -446,7 +446,7 @@ const squadData = {
             : '東仙要',
         captainKana: "とうせんかなめ", 
         captainZanpakuto: "清虫", captainZanpakutoKana: "すずむし",
-        captainBankai: "清虫終式・閻魔蟋蟀", captainBankaiKana: "すずむしついしき・えんまこおろぎ",
+        captainBankai: "清虫終式・閻魔蟋蟀", captainBankaiKana: "すずむしツイシキ・エンマコオロギ",
         lieutenant: "檜佐木修兵", lieutenantKana: "ひさぎしゅうへい",
         lieutenantZanpakuto: "？？？", lieutenantZanpakutoKana: "？？？"
     },
@@ -454,6 +454,7 @@ const squadData = {
         name: "十番隊", 
         captain: "日番谷冬獅郎", captainKana: "ひつがやとうしろう", 
         captainZanpakuto: "氷輪丸", captainZanpakutoKana: "ひょうりんまる",
+        captainBankai: "大紅蓮氷輪丸", captainBankaiKana: "だいぐれんひょうりんまる",
         lieutenant: "松本乱菊", lieutenantKana: "まつもとらんぎく",
         lieutenantZanpakuto: "？？？", lieutenantZanpakutoKana: "？？？"
     },
@@ -479,7 +480,7 @@ const squadData = {
     13: { 
         name: "十三番隊", 
         captain: "浮竹十四郎", captainKana: "うきたけじゅうしろう",
-        captainZanpakuto: "？？？", captainZanpakutoKana: "？？？",
+        captainZanpakuto: "双魚理", captainZanpakutoKana: "そうぎょのことわり",
         role2: "副隊長 ※現在空席",
         hideLieutenant: true,
         exLieutenantName: "志波海燕",
