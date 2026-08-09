@@ -62,16 +62,10 @@
         /* カテゴリー切り替えタブ */
         .category-tab-container {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 25px;
-        }
-        .category-top-row, .category-bottom-row {
-            display: flex;
             justify-content: center;
             gap: 15px;
             flex-wrap: wrap;
+            margin-bottom: 25px;
         }
 
         .category-tab {
@@ -91,9 +85,9 @@
             border-color: #fff;
             box-shadow: 0 0 15px rgba(229, 9, 20, 0.6);
         }
-        .vizard-tab.active {
-            background-color: #4caf50 !important;
-            box-shadow: 0 0 15px rgba(76, 175, 80, 0.8) !important;
+        .gensei-tab.active {
+            background-color: #00bcd4 !important;
+            box-shadow: 0 0 15px rgba(0, 188, 212, 0.8) !important;
         }
         .hueco-tab.active {
             background-color: #9c27b0 !important;
@@ -106,7 +100,7 @@
             justify-content: center;
             max-width: 800px;
             gap: 10px;
-            margin-bottom: 25px;
+            margin-bottom: 15px;
         }
         .squad-btn {
             background-color: #333;
@@ -141,7 +135,37 @@
             color: #fff;
         }
         .hueco-btn:hover {
-            background-color: #e91e63;
+            background-color: #9c27b0;
+            border-color: #fff;
+        }
+
+        /* 十刃サブボタンコンテナ */
+        .espada-sub-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 800px;
+            gap: 8px;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #222;
+            border: 1px dashed #9c27b0;
+            border-radius: 8px;
+        }
+        .espada-sub-btn {
+            background-color: #2a2a2a;
+            color: #ccc;
+            border: 1px solid #7b1fa2;
+            padding: 6px 14px;
+            font-size: 0.9em;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        .espada-sub-btn:hover, .espada-sub-btn.active {
+            background-color: #9c27b0;
+            color: #fff;
             border-color: #fff;
         }
 
@@ -208,17 +232,6 @@
             margin-left: 8px;
             font-weight: bold;
         }
-        .interactive-tag {
-            cursor: pointer;
-            text-decoration: underline;
-            transition: all 0.2s;
-            display: inline-block;
-        }
-        .interactive-tag:hover {
-            color: #ff4a5a;
-            text-shadow: 0 0 8px rgba(229, 9, 20, 0.8);
-            transform: scale(1.1);
-        }
         .nickname-tag {
             color: #ffffff;
             font-size: 0.85em;
@@ -237,117 +250,16 @@
             from { opacity: 0; transform: translateY(-5px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        /* アナログノイズ砂嵐 */
-        #noiseOverlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: repeating-linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85) 2px, transparent 2px, transparent 4px),
-                        repeating-linear-gradient(90deg, rgba(255,255,255,0.12), rgba(255,255,255,0.12) 1px, transparent 1px, transparent 3px);
-            background-color: #111111;
-            opacity: 0;
-            pointer-events: none;
-            z-index: 9998;
-        }
-        .run-noise {
-            opacity: 0.95 !important;
-            animation: staticNoise 0.05s infinite;
-        }
-        @keyframes staticNoise {
-            0% { background-position: 0 0; }
-            50% { background-position: 10px 20px; }
-            100% { background-position: -5px -10px; }
-        }
-
-        /* 飛び散るガラス破片コンテナ */
-        #shatterContainer {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 9997;
-            perspective: 1000px;
-        }
-        
-        /* 飛び散るガラス破片パーツ */
-        .glass-shard {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(2px);
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-            transform-style: preserve-3d;
-            will-change: transform, opacity;
-        }
-
-        /* 画面中央のヒビ割れ */
-        #glassOverlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: transparent;
-            pointer-events: none;
-            z-index: 9996;
-            opacity: 0;
-        }
-        .cracked {
-            opacity: 1 !important;
-            background-image: 
-                radial-gradient(circle at 50% 50%, #ffffff 0%, rgba(255,255,255,0.8) 4px, transparent 15px),
-                linear-gradient(28deg, transparent 49.3%, rgba(255,255,255,0.85) 50%, transparent 50.7%),
-                linear-gradient(115deg, transparent 49.3%, rgba(255,255,255,0.75) 50%, transparent 50.7%),
-                linear-gradient(-55deg, transparent 49.4%, rgba(255,255,255,0.85) 50%, transparent 50.6%),
-                linear-gradient(-135deg, transparent 49.4%, rgba(255,255,255,0.65) 50%, transparent 50.6%),
-                radial-gradient(circle at 50% 50%, transparent 40px, rgba(255,255,255,0.5) 43px, transparent 48px),
-                radial-gradient(circle at 50% 50%, transparent 110px, rgba(255,255,255,0.3) 114px, transparent 118px);
-            box-shadow: inset 0 0 120px rgba(255,255,255,0.25);
-        }
-
-        /* セリフテキスト */
-        #kyokasuigetsuText {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.9);
-            font-size: 3.8em;
-            font-weight: 900;
-            color: #ffffff;
-            text-shadow: 0 0 20px #000000, 0 0 40px #333333;
-            letter-spacing: 0.25em;
-            white-space: nowrap;
-            z-index: 9999;
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            font-family: 'Yu Mincho', 'Hiragino Mincho Pro', serif;
-        }
-        #kyokasuigetsuText.show {
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1.05);
-        }
     </style>
 </head>
 <body>
-
-    <!-- 演出用レイヤー -->
-    <div id="noiseOverlay"></div>
-    <div id="glassOverlay"></div>
-    <div id="shatterContainer"></div>
-    <div id="kyokasuigetsuText">砕けろ、鏡花水月</div>
 
     <!-- 見出し -->
     <h1>
         <span class="utsuro-highlight">氷室うつろさん</span><br>
         <span class="bleach-highlight">BLEACH Rebirth of Souls 配信用</span><br>
         組織一覧表
-        <span class="stream-date-sub">※8月1日配信現在</span>
+        <span class="stream-date-sub">※8月8日配信現在</span>
     </h1>
 
     <div class="notice-text">
@@ -357,18 +269,16 @@
 
     <!-- カテゴリータブ -->
     <div class="category-tab-container" id="categoryTabContainer">
-        <div class="category-top-row" id="tabTopRow">
-            <button class="category-tab active" id="tabGotei" onclick="switchCategory('gotei')">護廷十三隊（尸魂界）</button>
-            <button class="category-tab" id="tabGensei" onclick="switchCategory('gensei')">現世</button>
-        </div>
-        <div class="category-bottom-row" id="tabBottomRow" style="display: none;">
-            <button class="category-tab vizard-tab" id="tabVizard" onclick="switchCategory('vizard')">仮面の軍勢（ヴァイザード）</button>
-            <button class="category-tab hueco-tab" id="tabHueco" onclick="switchCategory('hueco')">藍染一味＋虚</button>
-        </div>
+        <button class="category-tab active" id="tabGotei" onclick="switchCategory('gotei')">尸魂界（護廷十三隊）</button>
+        <button class="category-tab gensei-tab" id="tabGensei" onclick="switchCategory('gensei')">現世</button>
+        <button class="category-tab hueco-tab" id="tabHueco" onclick="switchCategory('hueco')">虚圏（ウェコムンド）</button>
     </div>
 
     <!-- ボタン一覧 -->
     <div class="btn-container" id="btnContainer"></div>
+
+    <!-- 十刃専用サブボタン一覧 -->
+    <div class="espada-sub-container" id="espadaSubContainer" style="display: none;"></div>
 
     <!-- 情報表示ボックス -->
     <div class="info-box" id="infoBox">
@@ -398,11 +308,11 @@
     </div>
 
 <script>
-let isKyokasuigetsuActivated = false;
 let currentCategory = 'gotei';
+let currentEspadaNum = 1;
 
 const squadData = {
-    // 【護廷十三隊（尸魂界）】
+    // 【尸魂界（護廷十三隊）】
     1: { 
         name: "一番隊", 
         role1: "隊長・護廷十三隊総隊長",
@@ -421,11 +331,9 @@ const squadData = {
     },
     3: { 
         name: "三番隊", 
-        getCaptain: () => isKyokasuigetsuActivated 
-            ? '市丸ギン<span class="nickname-tag">（ワビスケ）</span><span class="dead-tag">（離反）</span>' 
-            : '市丸ギン<span class="nickname-tag">（ワビスケ）</span>',
-        captainKana: "いちまるぎん",
-        captainZanpakuto: "神鎗", captainZanpakutoKana: "しんそう",
+        captain: '<s style="opacity:0.6;">市丸ギン<span class="nickname-tag">（ワビスケ）</span></s><span class="dead-tag">（離反）</span>',
+        captainKana: '<s style="opacity:0.6;">いちまるぎん</s>',
+        captainZanpakuto: '<s style="opacity:0.6;">神鎗</s>', captainZanpakutoKana: '<s style="opacity:0.6;">しんそう</s>',
         lieutenant: "吉良イヅル", lieutenantKana: "きらいづる",
         lieutenantZanpakuto: "侘助", lieutenantZanpakutoKana: "わびすけ"
     },
@@ -440,12 +348,10 @@ const squadData = {
     },
     5: { 
         name: "五番隊", 
-        getCaptain: () => isKyokasuigetsuActivated 
-            ? '藍染惣右介<span class="dead-tag" style="text-decoration: line-through; opacity: 0.6;">（死亡）</span><span class="dead-tag">（離反）</span>' 
-            : '藍染惣右介<span class="dead-tag interactive-tag" onclick="triggerKyokasuigetsu(event)">（死亡）</span>',
-        captainKana: "あいぜんそうすけ", 
-        getCaptainZanpakuto: () => isKyokasuigetsuActivated ? "鏡花水月" : "？？？",
-        getCaptainZanpakutoKana: () => isKyokasuigetsuActivated ? "きょうかすいげつ" : "？？？",
+        captain: '<s style="opacity:0.6;">藍染惣右介</s><span class="dead-tag">（離反）</span>',
+        captainKana: '<s style="opacity:0.6;">あいぜんそうすけ</s>', 
+        captainZanpakuto: '<s style="opacity:0.6;">鏡花水月</s>',
+        captainZanpakutoKana: '<s style="opacity:0.6;">きょうかすいげつ</s>',
         lieutenant: "雛森桃", lieutenantKana: "ひなもりもも",
         lieutenantZanpakuto: "飛梅", lieutenantZanpakutoKana: "とびうめ"
     },
@@ -475,12 +381,10 @@ const squadData = {
     },
     9: { 
         name: "九番隊", 
-        getCaptain: () => isKyokasuigetsuActivated 
-            ? '東仙要<span class="dead-tag">（離反）</span>' 
-            : '東仙要',
-        captainKana: "とうせんかなめ", 
-        captainZanpakuto: "清虫", captainZanpakutoKana: "すずむし",
-        captainBankai: "清虫終式・閻魔蟋蟀", captainBankaiKana: "すずむしついしき・えんまこおろぎ",
+        captain: '<s style="opacity:0.6;">東仙要</s><span class="dead-tag">（離反）</span>',
+        captainKana: '<s style="opacity:0.6;">とうせんかなめ</s>', 
+        captainZanpakuto: '<s style="opacity:0.6;">清虫</s>', captainZanpakutoKana: '<s style="opacity:0.6;">すずむし</s>',
+        captainBankai: '<s style="opacity:0.6;">清虫終式・閻魔蟋蟀</s>', captainBankaiKana: '<s style="opacity:0.6;">すずむしついしき・えんまこおろぎ</s>',
         lieutenant: "檜佐木修兵", lieutenantKana: "ひさぎしゅうへい",
         lieutenantZanpakuto: "？？？", lieutenantZanpakutoKana: "？？？"
     },
@@ -500,6 +404,7 @@ const squadData = {
         lieutenantZanpakuto: "？？？", lieutenantZanpakutoKana: "？？？",
         third: "斑目一角", thirdKana: "まだらめいっかく",
         thirdZanpakuto: "鬼灯丸", thirdZanpakutoKana: "ほおずきまる",
+        thirdBankai: "龍紋鬼灯丸", thirdBankaiKana: "りゅうもんほおずきまる",
         fifth: "綾瀬川弓親", fifthKana: "あやせがわゆみちか",
         fifthZanpakuto: "？？？", fifthZanpakutoKana: "？？？"
     },
@@ -522,7 +427,7 @@ const squadData = {
         exLieutenantZanpakuto: "？？？",
         exLieutenantZanpakutoKana: "？？？",
         member: "朽木ルキア", memberKana: "くちきるきあ",
-        memberZanpakuto: "？？？", memberZanpakutoKana: "？？？"
+        memberZanpakuto: "袖白雪", memberZanpakutoKana: "そでのしらゆき"
     },
     0: { 
         name: "零番隊", 
@@ -534,7 +439,7 @@ const squadData = {
 
     // 【現世】
     ryoka: {
-        getName: () => isKyokasuigetsuActivated ? "現世組" : "現世組（旅禍等）",
+        name: "現世組",
         isMultiList: true,
         members: [
             {
@@ -560,47 +465,11 @@ const squadData = {
                 kana: "さどやすとら"
             },
             {
-                name: "志波岩鷲",
+                name: '志波岩鷲<span class="nickname-tag">（尸魂界残留）</span>',
                 kana: "しばがんじゅ"
             }
         ]
     },
-    ex: {
-        nameHtml: '元<ruby>尸魂界<rt>ソウル・ソサエティ</rt></ruby>関係者',
-        name: "元尸魂界関係者",
-        isMultiList: true,
-        getMembers: () => {
-            const baseMembers = [
-                {
-                    role: "元・隠密機動総司令官及び同第一分隊「刑軍」統括軍団長",
-                    name: "四楓院夜一",
-                    kana: "しほういんよるいち",
-                    zanpakuto: "？？？",
-                    zanpakutoKana: "？？？"
-                },
-                {
-                    role: "元・護廷十三隊十二番隊隊長・技術開発局初代局長",
-                    name: "浦原喜助",
-                    kana: "うらはらきすけ",
-                    zanpakuto: "？？？",
-                    zanpakutoKana: "？？？"
-                }
-            ];
-            // 鏡花水月ギミック解除後のみ黒崎一心を追加
-            if (isKyokasuigetsuActivated) {
-                baseMembers.push({
-                    role: "元・護廷十三隊",
-                    name: "黒崎一心",
-                    kana: "くろさきいっしん",
-                    zanpakuto: "？？？",
-                    zanpakutoKana: "？？？"
-                });
-            }
-            return baseMembers;
-        }
-    },
-
-    // 【仮面の軍勢】
     vizard: {
         name: "仮面の軍勢（ヴァイザード）",
         isMultiList: true,
@@ -608,21 +477,55 @@ const squadData = {
             {
                 name: "平子真子",
                 kana: "ひらこしんじ",
-                zanpakuto: "？？？",
-                zanpakutoKana: "？？？"
+                zanpakuto: "逆撫",
+                zanpakutoKana: "さかなで"
             },
             {
                 name: "猿柿ひよ里",
                 kana: "さるがきひより",
                 zanpakuto: "？？？",
                 zanpakutoKana: "？？？"
+            },
+            {
+                name: '有昭田鉢玄<span class="nickname-tag">（ハッチ）</span>',
+                kana: "うしょうだはちげん",
+                zanpakuto: "？？？",
+                zanpakutoKana: "？？？"
+            }
+        ]
+    },
+    ex: {
+        nameHtml: '元<ruby>尸魂界<rt>ソウル・ソサエティ</rt></ruby>関係者',
+        name: "元尸魂界関係者",
+        isMultiList: true,
+        members: [
+            {
+                role: "元・隠密機動総司令官及び同第一分隊「刑軍」統括軍団長",
+                name: "四楓院夜一",
+                kana: "しほういんよるいち",
+                zanpakuto: "？？？",
+                zanpakutoKana: "？？？"
+            },
+            {
+                role: "元・護廷十三隊十二番隊隊長・技術開発局初代局長",
+                name: "浦原喜助",
+                kana: "うらはらきすけ",
+                zanpakuto: "？？？",
+                zanpakutoKana: "？？？"
+            },
+            {
+                role: "元・護廷十三隊",
+                name: "黒崎一心",
+                kana: "くろさきいっしん",
+                zanpakuto: "？？？",
+                zanpakutoKana: "？？？"
             }
         ]
     },
 
-    // 【藍染一味＋虚】
-    hueco: {
-        name: "藍染一味＋虚",
+    // 【虚圏（ウェコムンド）】
+    hueco_kanbu: {
+        name: "幹部等",
         isMultiList: true,
         members: [
             {
@@ -647,34 +550,35 @@ const squadData = {
                 zanpakutoKana: "すずむし",
                 bankai: "清虫終式・閻魔蟋蟀",
                 bankaiKana: "すずむしついしき・えんまこおろぎ"
-            },
-            {
-                role: "破面（アランカル）",
-                name: "ヤミー",
-                kana: "やみー"
-            },
-            {
-                role: "破面（アランカル）",
-                name: "ウルキオラ",
-                kana: "うるきおら"
-            },
-            {
-                role: "破面（アランカル）Ｎｏ．６",
-                name: "グリムジョー",
-                kana: "ぐりむじょー"
-            },
-            {
-                role: "破面（アランカル）Ｎｏ．１１",
-                name: "シャウロン",
-                kana: "しゃうろん"
-            },
-            {
-                role: "破面（アランカル）",
-                name: "ディ・ロイ",
-                kana: "でぃ・ろい"
             }
         ]
+    },
+    espada: {
+        name: "十刃（エスパーダ）",
+        isEspadaGroup: true
     }
+};
+
+// 十刃個別のデータ定義
+const espadaMembersData = {
+    1: { title: "十刃（No.１）", members: [{ role: "破面（アランカル）Ｎｏ．１", name: "？？？", kana: "？？？", zanpakuto: "？？？", zanpakutoKana: "？？？" }] },
+    2: { title: "十刃（No.２）", members: [{ role: "破面（アランカル）Ｎｏ．２", name: "？？？", kana: "？？？", zanpakuto: "？？？", zanpakutoKana: "？？？" }] },
+    3: { title: "十刃（No.３）", members: [{ role: "破面（アランカル）Ｎｏ．３", name: "？？？", kana: "？？？", zanpakuto: "？？？", zanpakutoKana: "？？？" }] },
+    4: { title: "十刃（No.４）", members: [{ role: "破面（アランカル）Ｎｏ．４", name: "ウルキオラ", kana: "うるきおら", zanpakuto: "？？？", zanpakutoKana: "？？？" }] },
+    5: { title: "十刃（No.５）", members: [{ role: "破面（アランカル）Ｎｏ．５", name: "？？？", kana: "？？？", zanpakuto: "？？？", zanpakutoKana: "？？？" }] },
+    6: { 
+        title: "十刃（No.６）", 
+        members: [
+            { role: "破面（アランカル）Ｎｏ．６", name: "グリムジョー・ジャガージャック", kana: "ぐりむじょー・じゃがーじゃっく", zanpakuto: "？？？", zanpakutoKana: "？？？" },
+            { role: "従属官（フラシオン）・破面Ｎｏ．１１", name: "シャウロン", kana: "しゃうろん", zanpakuto: "？？？", zanpakutoKana: "？？？" },
+            { role: "従属官（フラシオン）・破面Ｎｏ．１３", name: 'エドラド・リオネス<span class="nickname-tag">（斑目一角に敗北）</span>', kana: "えどらど・りおねす", zanpakuto: "火山獣（ボルカニカ）", zanpakutoKana: "ぼるかにか" },
+            { role: "従属官（フラシオン）・破面", name: "ディ・ロイ", kana: "でぃ・ろい", zanpakuto: "？？？", zanpakutoKana: "？？？" }
+        ] 
+    },
+    7: { title: "十刃（No.７）", members: [{ role: "破面（アランカル）Ｎｏ．７", name: "？？？", kana: "？？？", zanpakuto: "？？？", zanpakutoKana: "？？？" }] },
+    8: { title: "十刃（No.８）", members: [{ role: "破面（アランカル）Ｎｏ．８", name: "？？？", kana: "？？？", zanpakuto: "？？？", zanpakutoKana: "？？？" }] },
+    9: { title: "十刃（No.９）", members: [{ role: "破面（アランカル）Ｎｏ．９", name: "？？？", kana: "？？？", zanpakuto: "？？？", zanpakutoKana: "？？？" }] },
+    10: { title: "十刃（No.１０）", members: [{ role: "破面（アランカル）Ｎｏ．１０", name: "ヤミー", kana: "やみー", zanpakuto: "？？？", zanpakutoKana: "？？？" }] }
 };
 
 const extraSeats = [
@@ -690,19 +594,14 @@ function switchCategory(category) {
     // タブの見た目更新
     document.getElementById('tabGotei').classList.toggle('active', category === 'gotei');
     document.getElementById('tabGensei').classList.toggle('active', category === 'gensei');
-    
-    const tabVizard = document.getElementById('tabVizard');
-    if (tabVizard) tabVizard.classList.toggle('active', category === 'vizard');
-    
-    const tabHueco = document.getElementById('tabHueco');
-    if (tabHueco) tabHueco.classList.toggle('active', category === 'hueco');
+    document.getElementById('tabHueco').classList.toggle('active', category === 'hueco');
 
     // 枠線の色の切り替え
     const infoBox = document.getElementById('infoBox');
     if (category === 'hueco') {
         infoBox.style.borderColor = '#9c27b0';
-    } else if (category === 'vizard') {
-        infoBox.style.borderColor = '#4caf50';
+    } else if (category === 'gensei') {
+        infoBox.style.borderColor = '#00bcd4';
     } else {
         infoBox.style.borderColor = '#e50914';
     }
@@ -712,7 +611,9 @@ function switchCategory(category) {
 
 function renderButtons() {
     const btnContainer = document.getElementById('btnContainer');
+    const espadaSubContainer = document.getElementById('espadaSubContainer');
     btnContainer.innerHTML = '';
+    espadaSubContainer.style.display = 'none';
 
     if (currentCategory === 'gotei') {
         const btnOrder = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 0];
@@ -726,34 +627,78 @@ function renderButtons() {
         });
         showSquad(1);
     } else if (currentCategory === 'gensei') {
-        const genseiKeys = ["ryoka", "ex"];
+        const genseiKeys = ["ryoka", "vizard", "ex"];
         genseiKeys.forEach(key => {
             const btn = document.createElement('button');
             btn.className = 'squad-btn';
             if (key === 'ryoka') btn.classList.add('ryoka-btn');
+            if (key === 'vizard') btn.classList.add('vizard-btn');
             if (key === 'ex') btn.classList.add('ex-btn');
             
-            const btnName = (typeof squadData[key].getName === 'function') ? squadData[key].getName() : squadData[key].name;
+            const btnName = squadData[key].name;
             btn.innerText = btnName;
             btn.onclick = function() { showSquad(key); };
             btnContainer.appendChild(btn);
         });
         showSquad("ryoka");
-    } else if (currentCategory === 'vizard') {
-        const btn = document.createElement('button');
-        btn.className = 'squad-btn vizard-btn';
-        btn.innerText = squadData['vizard'].name;
-        btn.onclick = function() { showSquad('vizard'); };
-        btnContainer.appendChild(btn);
-        showSquad("vizard");
     } else if (currentCategory === 'hueco') {
-        const btn = document.createElement('button');
-        btn.className = 'squad-btn hueco-btn';
-        btn.innerText = squadData['hueco'].name;
-        btn.onclick = function() { showSquad('hueco'); };
-        btnContainer.appendChild(btn);
-        showSquad("hueco");
+        const huecoKeys = ["hueco_kanbu", "espada"];
+        huecoKeys.forEach(key => {
+            const btn = document.createElement('button');
+            btn.className = 'squad-btn hueco-btn';
+            btn.innerText = squadData[key].name;
+            btn.onclick = function() { showSquad(key); };
+            btnContainer.appendChild(btn);
+        });
+        showSquad("hueco_kanbu");
     }
+}
+
+function renderEspadaSubButtons() {
+    const espadaSubContainer = document.getElementById('espadaSubContainer');
+    espadaSubContainer.innerHTML = '';
+    espadaSubContainer.style.display = 'flex';
+
+    for (let i = 1; i <= 10; i++) {
+        const btn = document.createElement('button');
+        btn.className = 'espada-sub-btn';
+        if (i === currentEspadaNum) btn.classList.add('active');
+        btn.innerText = `No. ${i}`;
+        btn.onclick = function() {
+            currentEspadaNum = i;
+            renderEspadaSubButtons();
+            showEspadaSingle(i);
+        };
+        espadaSubContainer.appendChild(btn);
+    }
+}
+
+function showEspadaSingle(num) {
+    const eData = espadaMembersData[num];
+    document.getElementById('squadName').innerText = eData.title;
+
+    const standardBox = document.getElementById('standardPositions');
+    const specialBox = document.getElementById('specialPosition');
+    const dynamicSeats = document.getElementById('dynamicSeats');
+
+    standardBox.style.display = 'none';
+    specialBox.style.display = 'none';
+    dynamicSeats.innerHTML = '';
+
+    eData.members.forEach(m => {
+        const memberWrapper = document.createElement('div');
+        memberWrapper.className = 'dynamic-position';
+        const zanpakutoHTML = makeZanpakutoHTML(m.zanpakuto, m.zanpakutoKana, m.bankai, m.bankaiKana);
+        const roleHTML = m.role ? `<div class="position-title">${m.role}</div>` : '';
+
+        memberWrapper.innerHTML = `
+            ${roleHTML}
+            <p class="char-name">${m.name}</p>
+            <p class="char-kana">${m.kana}</p>
+            ${zanpakutoHTML}
+        `;
+        dynamicSeats.appendChild(memberWrapper);
+    });
 }
 
 function makeZanpakutoHTML(name, kana, bankaiName, bankaiKana) {
@@ -781,10 +726,18 @@ function showSquad(num) {
     currentSquadNum = num;
     const data = squadData[num];
 
+    const espadaSubContainer = document.getElementById('espadaSubContainer');
+
+    if (data.isEspadaGroup) {
+        renderEspadaSubButtons();
+        showEspadaSingle(currentEspadaNum);
+        return;
+    } else {
+        espadaSubContainer.style.display = 'none';
+    }
+
     if (data.nameHtml) {
         document.getElementById('squadName').innerHTML = data.nameHtml;
-    } else if (typeof data.getName === 'function') {
-        document.getElementById('squadName').innerText = data.getName();
     } else {
         document.getElementById('squadName').innerText = data.name;
     }
@@ -812,9 +765,7 @@ function showSquad(num) {
         standardBox.style.display = 'none';
         specialBox.style.display = 'none';
 
-        const memberList = (typeof data.getMembers === 'function') ? data.getMembers() : data.members;
-
-        memberList.forEach(m => {
+        data.members.forEach(m => {
             const memberWrapper = document.createElement('div');
             memberWrapper.className = 'dynamic-position';
             const zanpakutoHTML = makeZanpakutoHTML(m.zanpakuto, m.zanpakutoKana, m.bankai, m.bankaiKana);
@@ -846,9 +797,8 @@ function showSquad(num) {
             document.getElementById('roleTitle2').innerText = "副隊長";
         }
 
-        const finalCaptainName = (typeof data.getCaptain === 'function') ? data.getCaptain() : data.captain;
-        document.getElementById('captainName').innerHTML = finalCaptainName;
-        document.getElementById('captainKana').innerText = data.captainKana;
+        document.getElementById('captainName').innerHTML = data.captain;
+        document.getElementById('captainKana').innerHTML = data.captainKana;
         document.getElementById('captainName').style.display = 'block';
         document.getElementById('captainKana').style.display = 'block';
         
@@ -862,11 +812,8 @@ function showSquad(num) {
             document.getElementById('lieutenantKana').innerText = data.lieutenantKana;
         }
 
-        const captZanpakutoName = (typeof data.getCaptainZanpakuto === 'function') ? data.getCaptainZanpakuto() : data.captainZanpakuto;
-        const captZanpakutoKana = (typeof data.getCaptainZanpakutoKana === 'function') ? data.getCaptainZanpakutoKana() : data.captainZanpakutoKana;
-
-        if (captZanpakutoName) {
-            document.getElementById('captainZanpakuto').innerHTML = makeZanpakutoHTML(captZanpakutoName, captZanpakutoKana, data.captainBankai, data.captainBankaiKana);
+        if (data.captainZanpakuto) {
+            document.getElementById('captainZanpakuto').innerHTML = makeZanpakutoHTML(data.captainZanpakuto, data.captainZanpakutoKana, data.captainBankai, data.captainBankaiKana);
         }
         if (data.lieutenantZanpakuto && !data.hideLieutenant) {
             document.getElementById('lieutenantZanpakuto').innerHTML = makeZanpakutoHTML(data.lieutenantZanpakuto, data.lieutenantZanpakutoKana, data.lieutenantBankai, data.lieutenantBankaiKana);
@@ -906,136 +853,6 @@ function showSquad(num) {
 
 // 初期描画処理
 renderButtons();
-
-function playRealGlassShatter() {
-    try {
-        const audio = new Audio('shatter.mp3');
-        audio.volume = 0.8;
-        audio.play();
-    } catch (e) {
-        console.error("オーディオの再生に失敗しました:", e);
-    }
-}
-
-function spawn3DGlassParticles() {
-    const container = document.getElementById('shatterContainer');
-    container.innerHTML = '';
-    
-    const shardCount = 60; 
-    const windowWidth = window.innerWidth;
-    const windowHeight = window.innerHeight;
-    
-    const centerX = windowWidth / 2;
-    const centerY = windowHeight / 2;
-    
-    for (let i = 0; i < shardCount; i++) {
-        const shard = document.createElement('div');
-        shard.className = 'glass-shard';
-        
-        const w = 15 + Math.random() * 50;
-        const h = 15 + Math.random() * 50;
-        shard.style.width = `${w}px`;
-        shard.style.height = `${h}px`;
-        
-        const p1 = `${Math.random() * 40}% ${Math.random() * 40}%`;
-        const p2 = `${60 + Math.random() * 40}% ${Math.random() * 40}%`;
-        const p3 = `${Math.random() * 100}% ${60 + Math.random() * 40}%`;
-        shard.style.clipPath = `polygon(${p1}, ${p2}, ${p3})`;
-        
-        shard.style.left = `${centerX - w/2}px`;
-        shard.style.top = `${centerY - h/2}px`;
-        
-        container.appendChild(shard);
-        
-        const angle = Math.random() * Math.PI * 2;
-        const speed = 15 + Math.random() * 30;
-        let vx = Math.cos(angle) * speed;
-        let vy = Math.sin(angle) * speed - (8 + Math.random() * 12);
-        let px = centerX - w/2;
-        let py = centerY - h/2;
-        
-        let rx = Math.random() * 360;
-        let ry = Math.random() * 360;
-        let rz = Math.random() * 360;
-        const vrx = (Math.random() - 0.5) * 30;
-        const vry = (Math.random() - 0.5) * 30;
-        const vrz = (Math.random() - 0.5) * 30;
-        
-        const gravity = 0.9;
-        let opacity = 1;
-        
-        function updatePhysics() {
-            px += vx;
-            py += vy;
-            vy += gravity;
-            
-            vx *= 0.97;
-            vy *= 0.97;
-            
-            rx += vrx;
-            ry += vry;
-            rz += vrz;
-            
-            opacity -= 0.012;
-            
-            shard.style.transform = `translate3d(${px - (centerX - w/2)}px, ${py - (centerY - h/2)}px, ${py*0.25}px) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg)`;
-            shard.style.opacity = opacity;
-            
-            if (opacity > 0) {
-                requestAnimationFrame(updatePhysics);
-            } else {
-                shard.remove();
-            }
-        }
-        
-        requestAnimationFrame(updatePhysics);
-    }
-}
-
-function triggerKyokasuigetsu(event) {
-    event.stopPropagation();
-    
-    const noise = document.getElementById('noiseOverlay');
-    const glass = document.getElementById('glassOverlay');
-    const text = document.getElementById('kyokasuigetsuText');
-    
-    noise.classList.add('run-noise');
-    
-    setTimeout(() => {
-        text.classList.add('show');
-    }, 300);
-    
-    setTimeout(() => {
-        playRealGlassShatter();
-        spawn3DGlassParticles();
-        
-        noise.classList.remove('run-noise');
-        glass.classList.add('cracked');
-        
-        isKyokasuigetsuActivated = true;
-        
-        // ギミック発動後に「仮面の軍勢」「藍染一味＋虚」タブを表示
-        document.getElementById('tabBottomRow').style.display = 'flex';
-
-        // ボタンの再描画
-        renderButtons();
-
-        if (currentSquadNum !== null) {
-            showSquad(currentSquadNum);
-        }
-    }, 1800);
-    
-    setTimeout(() => {
-        text.classList.remove('show');
-        glass.style.transition = "opacity 0.8s";
-        glass.style.opacity = "0";
-    }, 3100);
-
-    setTimeout(() => {
-        glass.classList.remove('cracked');
-        glass.style.transition = "";
-    }, 4000);
-}
 </script>
 
 </body>
