@@ -457,7 +457,7 @@ const squadData = {
                 kana: "いしだうりゅう"
             },
             {
-                name: "井上織姫",
+                name: '井上織姫<span class="dead-tag">→虚圏へ連行される</span>',
                 kana: "いのうえおりひめ"
             },
             {
@@ -494,9 +494,8 @@ const squadData = {
             }
         ]
     },
-    ex: {
-        nameHtml: '元<ruby>尸魂界<rt>ソウル・ソサエティ</rt></ruby>関係者',
-        name: "元尸魂界関係者",
+    other: {
+        name: "その他",
         isMultiList: true,
         members: [
             {
@@ -510,8 +509,8 @@ const squadData = {
                 role: "元・護廷十三隊十二番隊隊長・技術開発局初代局長",
                 name: "浦原喜助",
                 kana: "うらはらきすけ",
-                zanpakuto: "？？？",
-                zanpakutoKana: "？？？"
+                zanpakuto: "紅姫",
+                zanpakutoKana: "べにひめ"
             },
             {
                 role: "元・護廷十三隊",
@@ -519,6 +518,11 @@ const squadData = {
                 kana: "くろさきいっしん",
                 zanpakuto: "？？？",
                 zanpakutoKana: "？？？"
+            },
+            {
+                role: "滅却師（クインシー）",
+                name: "石田竜弦",
+                kana: "いしだりゅうけん"
             }
         ]
     },
@@ -527,6 +531,7 @@ const squadData = {
     hueco_kanbu: {
         name: "幹部等",
         isMultiList: true,
+        isArrancar: true,
         members: [
             {
                 role: "総括",
@@ -536,14 +541,14 @@ const squadData = {
                 zanpakutoKana: "きょうかすいげつ"
             },
             {
-                role: "幹部",
+                role: "統括官",
                 name: '市丸ギン<span class="nickname-tag">（ワビスケ）</span>',
                 kana: "いちまるぎん",
                 zanpakuto: "神鎗",
                 zanpakutoKana: "しんそう"
             },
             {
-                role: "幹部",
+                role: "統括官",
                 name: "東仙要",
                 kana: "とうせんかなめ",
                 zanpakuto: "清虫",
@@ -556,10 +561,43 @@ const squadData = {
     espada: {
         name: "十刃（エスパーダ）",
         isEspadaGroup: true
+    },
+    hueco_other: {
+        name: "その他",
+        isMultiList: true,
+        isArrancar: true,
+        members: [
+            {
+                role: "改造破面（アランカル）",
+                name: "ワンダーワイス・マルジェラ",
+                kana: "わんだーわいす・まるじぇら",
+                zanpakuto: "？？？",
+                zanpakutoKana: "？？？"
+            },
+            {
+                role: "元・破面（アランカル）Ｎｏ．６",
+                name: "グリムジョー・ジャガージャック",
+                kana: "ぐりむじょー・じゃがーじゃっく",
+                zanpakuto: "軋れ…（きしれ…）",
+                zanpakutoKana: "きしれ…"
+            },
+            {
+                name: "ネル・トゥ",
+                kana: "ねる・とぅ"
+            },
+            {
+                name: "ペッシェ",
+                kana: "ぺっしぇ"
+            },
+            {
+                name: "ドンドチャッカ",
+                kana: "どんどちゃっか"
+            }
+        ]
     }
 };
 
-// 十刃個別のデータ定義
+// 十刃個別のデータ定義（全破面）
 const espadaMembersData = {
     1: { title: "十刃（No.１）", members: [{ role: "破面（アランカル）Ｎｏ．１", name: "？？？", kana: "？？？", zanpakuto: "？？？", zanpakutoKana: "？？？" }] },
     2: { title: "十刃（No.２）", members: [{ role: "破面（アランカル）Ｎｏ．２", name: "？？？", kana: "？？？", zanpakuto: "？？？", zanpakutoKana: "？？？" }] },
@@ -569,9 +607,9 @@ const espadaMembersData = {
     6: { 
         title: "十刃（No.６）", 
         members: [
-            { role: "破面（アランカル）Ｎｏ．６", name: "グリムジョー・ジャガージャック", kana: "ぐりむじょー・じゃがーじゃっく", zanpakuto: "？？？", zanpakutoKana: "？？？" },
-            { role: "従属官（フラシオン）・破面Ｎｏ．１１", name: "シャウロン", kana: "しゃうろん", zanpakuto: "？？？", zanpakutoKana: "？？？" },
-            { role: "従属官（フラシオン）・破面Ｎｏ．１３", name: 'エドラド・リオネス<span class="nickname-tag">（斑目一角に敗北）</span>', kana: "えどらど・りおねす", zanpakuto: "火山獣（ボルカニカ）", zanpakutoKana: "ぼるかにか" },
+            { role: "破面（アランカル）Ｎｏ．６", name: "ルピ", kana: "るぴ", zanpakuto: "？？？", zanpakutoKana: "？？？" },
+            { role: "従属官（フラシオン）・破面Ｎｏ．１１", name: "シャウロン・クーファン", kana: "しゃうろん・くーふぁん", zanpakuto: "？？？", zanpakutoKana: "？？？" },
+            { role: "従属官（フラシオン）・破面Ｎｏ．１３", name: 'エドラド・リオネス<span class="nickname-tag">（斑目一角に敗北）</span>', kana: "えどらど・りおねす", zanpakuto: "熾きろ（おきろ）火山獣（ボルカニカ）", zanpakutoKana: "おきろ ぼるかにか" },
             { role: "従属官（フラシオン）・破面", name: "ディ・ロイ", kana: "でぃ・ろい", zanpakuto: "？？？", zanpakutoKana: "？？？" }
         ] 
     },
@@ -627,13 +665,13 @@ function renderButtons() {
         });
         showSquad(1);
     } else if (currentCategory === 'gensei') {
-        const genseiKeys = ["ryoka", "vizard", "ex"];
+        const genseiKeys = ["ryoka", "vizard", "other"];
         genseiKeys.forEach(key => {
             const btn = document.createElement('button');
             btn.className = 'squad-btn';
             if (key === 'ryoka') btn.classList.add('ryoka-btn');
             if (key === 'vizard') btn.classList.add('vizard-btn');
-            if (key === 'ex') btn.classList.add('ex-btn');
+            if (key === 'other') btn.classList.add('ex-btn');
             
             const btnName = squadData[key].name;
             btn.innerText = btnName;
@@ -642,7 +680,7 @@ function renderButtons() {
         });
         showSquad("ryoka");
     } else if (currentCategory === 'hueco') {
-        const huecoKeys = ["hueco_kanbu", "espada"];
+        const huecoKeys = ["hueco_kanbu", "espada", "hueco_other"];
         huecoKeys.forEach(key => {
             const btn = document.createElement('button');
             btn.className = 'squad-btn hueco-btn';
@@ -688,7 +726,7 @@ function showEspadaSingle(num) {
     eData.members.forEach(m => {
         const memberWrapper = document.createElement('div');
         memberWrapper.className = 'dynamic-position';
-        const zanpakutoHTML = makeZanpakutoHTML(m.zanpakuto, m.zanpakutoKana, m.bankai, m.bankaiKana);
+        const zanpakutoHTML = makeZanpakutoHTML(m.zanpakuto, m.zanpakutoKana, m.bankai, m.bankaiKana, true);
         const roleHTML = m.role ? `<div class="position-title">${m.role}</div>` : '';
 
         memberWrapper.innerHTML = `
@@ -701,11 +739,12 @@ function showEspadaSingle(num) {
     });
 }
 
-function makeZanpakutoHTML(name, kana, bankaiName, bankaiKana) {
+function makeZanpakutoHTML(name, kana, bankaiName, bankaiKana, isArrancar = false) {
     if (!name) return '';
+    const label = isArrancar ? "斬魄刀・解号" : "斬魄刀";
     let html = `
         <div class="dynamic-position">
-            <p class="zanpakuto-area">斬魄刀: ${name}</p>
+            <p class="zanpakuto-area">${label}: ${name}</p>
             <p class="zanpakuto-kana">${kana || ''}</p>
         </div>
     `;
@@ -768,7 +807,10 @@ function showSquad(num) {
         data.members.forEach(m => {
             const memberWrapper = document.createElement('div');
             memberWrapper.className = 'dynamic-position';
-            const zanpakutoHTML = makeZanpakutoHTML(m.zanpakuto, m.zanpakutoKana, m.bankai, m.bankaiKana);
+            
+            // 破面判定（グループ指定かつ破面本人のみ「斬魄刀・解号」表記にする）
+            const isMemberArrancar = !!data.isArrancar && (m.name !== "藍染惣右介" && m.name !== '市丸ギン<span class="nickname-tag">（ワビスケ）</span>' && m.name !== "東仙要");
+            const zanpakutoHTML = makeZanpakutoHTML(m.zanpakuto, m.zanpakutoKana, m.bankai, m.bankaiKana, isMemberArrancar);
             const roleHTML = m.role ? `<div class="position-title">${m.role}</div>` : '';
 
             memberWrapper.innerHTML = `
