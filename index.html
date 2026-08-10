@@ -309,7 +309,7 @@
 
 <script>
 let currentCategory = 'gotei';
-let currentEspadaNum = 1;
+let currentEspadaKey = 'unknown';
 
 const squadData = {
     // 【尸魂界（護廷十三隊）】
@@ -599,10 +599,11 @@ const squadData = {
 
 // 十刃個別のデータ定義（全破面）
 const espadaMembersData = {
+    unknown: { title: "十刃（No.不明）", members: [{ role: "破面（アランカル）", name: "ウルキオラ", kana: "うるきおら", zanpakuto: "？？？", zanpakutoKana: "？？？" }] },
     1: { title: "十刃（No.１）", members: [{ role: "破面（アランカル）Ｎｏ．１", name: "？？？", kana: "？？？", zanpakuto: "？？？", zanpakutoKana: "？？？" }] },
     2: { title: "十刃（No.２）", members: [{ role: "破面（アランカル）Ｎｏ．２", name: "？？？", kana: "？？？", zanpakuto: "？？？", zanpakutoKana: "？？？" }] },
     3: { title: "十刃（No.３）", members: [{ role: "破面（アランカル）Ｎｏ．３", name: "？？？", kana: "？？？", zanpakuto: "？？？", zanpakutoKana: "？？？" }] },
-    4: { title: "十刃（No.４）", members: [{ role: "破面（アランカル）Ｎｏ．４", name: "ウルキオラ", kana: "うるきおら", zanpakuto: "？？？", zanpakutoKana: "？？？" }] },
+    4: { title: "十刃（No.４）", members: [{ role: "破面（アランカル）Ｎｏ．４", name: "？？？", kana: "？？？", zanpakuto: "？？？", zanpakutoKana: "？？？" }] },
     5: { title: "十刃（No.５）", members: [{ role: "破面（アランカル）Ｎｏ．５", name: "？？？", kana: "？？？", zanpakuto: "？？？", zanpakutoKana: "？？？" }] },
     6: { 
         title: "十刃（No.６）", 
@@ -697,13 +698,26 @@ function renderEspadaSubButtons() {
     espadaSubContainer.innerHTML = '';
     espadaSubContainer.style.display = 'flex';
 
+    // No.不明 ボタン
+    const unknownBtn = document.createElement('button');
+    unknownBtn.className = 'espada-sub-btn';
+    if (currentEspadaKey === 'unknown') unknownBtn.classList.add('active');
+    unknownBtn.innerText = 'No.不明';
+    unknownBtn.onclick = function() {
+        currentEspadaKey = 'unknown';
+        renderEspadaSubButtons();
+        showEspadaSingle('unknown');
+    };
+    espadaSubContainer.appendChild(unknownBtn);
+
+    // No.1～10 ボタン
     for (let i = 1; i <= 10; i++) {
         const btn = document.createElement('button');
         btn.className = 'espada-sub-btn';
-        if (i === currentEspadaNum) btn.classList.add('active');
+        if (currentEspadaKey === i) btn.classList.add('active');
         btn.innerText = `No. ${i}`;
         btn.onclick = function() {
-            currentEspadaNum = i;
+            currentEspadaKey = i;
             renderEspadaSubButtons();
             showEspadaSingle(i);
         };
@@ -711,8 +725,8 @@ function renderEspadaSubButtons() {
     }
 }
 
-function showEspadaSingle(num) {
-    const eData = espadaMembersData[num];
+function showEspadaSingle(key) {
+    const eData = espadaMembersData[key];
     document.getElementById('squadName').innerText = eData.title;
 
     const standardBox = document.getElementById('standardPositions');
@@ -769,7 +783,7 @@ function showSquad(num) {
 
     if (data.isEspadaGroup) {
         renderEspadaSubButtons();
-        showEspadaSingle(currentEspadaNum);
+        showEspadaSingle(currentEspadaKey);
         return;
     } else {
         espadaSubContainer.style.display = 'none';
