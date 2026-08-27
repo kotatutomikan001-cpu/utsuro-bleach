@@ -139,36 +139,6 @@
             border-color: #fff;
         }
 
-        /* 十刃サブボタンコンテナ */
-        .espada-sub-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            max-width: 800px;
-            gap: 8px;
-            margin-bottom: 20px;
-            padding: 10px;
-            background-color: #222;
-            border: 1px dashed #9c27b0;
-            border-radius: 8px;
-        }
-        .espada-sub-btn {
-            background-color: #2a2a2a;
-            color: #ccc;
-            border: 1px solid #7b1fa2;
-            padding: 6px 14px;
-            font-size: 0.9em;
-            cursor: pointer;
-            font-weight: bold;
-            border-radius: 4px;
-            transition: all 0.2s;
-        }
-        .espada-sub-btn:hover, .espada-sub-btn.active {
-            background-color: #9c27b0;
-            color: #fff;
-            border-color: #fff;
-        }
-
         .info-box {
             background-color: #222;
             border: 3px solid #e50914;
@@ -259,7 +229,7 @@
         <span class="utsuro-highlight">氷室うつろさん</span><br>
         <span class="bleach-highlight">BLEACH Rebirth of Souls 配信用</span><br>
         組織一覧表
-        <span class="stream-date-sub">※8月8日配信現在</span>
+        <span class="stream-date-sub">※8月19日配信現在</span>
     </h1>
 
     <div class="notice-text">
@@ -276,9 +246,6 @@
 
     <!-- ボタン一覧 -->
     <div class="btn-container" id="btnContainer"></div>
-
-    <!-- 十刃専用サブボタン一覧 -->
-    <div class="espada-sub-container" id="espadaSubContainer" style="display: none;"></div>
 
     <!-- 情報表示ボックス -->
     <div class="info-box" id="infoBox">
@@ -309,7 +276,6 @@
 
 <script>
 let currentCategory = 'gotei';
-let currentEspadaKey = 'unknown';
 
 const squadData = {
     // 【尸魂界（護廷十三隊）】
@@ -424,8 +390,8 @@ const squadData = {
         hideLieutenant: true,
         exLieutenantName: "志波海燕",
         exLieutenantKana: "しばかいえん",
-        exLieutenantZanpakuto: "？？？",
-        exLieutenantZanpakutoKana: "？？？",
+        exLieutenantZanpakuto: "捩花",
+        exLieutenantZanpakutoKana: "ねじばな",
         member: "朽木ルキア", memberKana: "くちきるきあ",
         memberZanpakuto: "袖白雪", memberZanpakutoKana: "そでのしらゆき"
     },
@@ -560,7 +526,23 @@ const squadData = {
     },
     espada: {
         name: "十刃（エスパーダ）",
-        isEspadaGroup: true
+        isMultiList: true,
+        isArrancar: true,
+        members: [
+            { role: "破面（アランカル）Ｎｏ．１", name: "？？？", kana: "？？？", zanpakuto: "？？？", zanpakutoKana: "？？？" },
+            { role: "破面（アランカル）Ｎｏ．２", name: "？？？", kana: "？？？", zanpakuto: "？？？", zanpakutoKana: "？？？" },
+            { role: "破面（アランカル）Ｎｏ．３", name: "？？？", kana: "？？？", zanpakuto: "？？？", zanpakutoKana: "？？？" },
+            { role: "破面（アランカル）Ｎｏ．４", name: "ウルキオラ・シファー", kana: "うるきおら・しふぁー", zanpakuto: "？？？", zanpakutoKana: "？？？" },
+            { role: "破面（アランカル）Ｎｏ．５", name: "ノイトラ", kana: "のいとら", zanpakuto: "？？？", zanpakutoKana: "？？？" },
+            { role: "破面（アランカル）Ｎｏ．６", name: "グリムジョー・ジャガージャック", kana: "ぐりむじょー・じゃがーじゃっく", zanpakuto: "軋れ、豹王（きしれ、パンテラ）", zanpakutoKana: "きしれ ぱんてら" },
+            { role: "破面（アランカル）Ｎｏ．７", name: "ゾマリ・ルルー", kana: "ぞまり・るるー", zanpakuto: "？？？", zanpakutoKana: "？？？" },
+            { role: "破面（アランカル）Ｎｏ．８", name: "ザエルアポロ・グランツ", kana: "ざえるあぽろ・ぐらんつ", zanpakuto: "啜れ、邪淫妃（すすれ、フォルニカラス）", zanpakutoKana: "すすれ ふぉるにからす" },
+            { role: "破面（アランカル）Ｎｏ．９", name: "アーロニーロ・アルルエリ", kana: "あーろにーろ・あるるえり", zanpakuto: "喰い尽くせ、喰虚（くいつくせ、グロトネリア）", zanpakutoKana: "くいつくせ ぐろとねりあ" },
+            { role: "破面（アランカル）Ｎｏ．１０", name: "ヤミー", kana: "やみー", zanpakuto: "？？？", zanpakutoKana: "？？？" },
+            { role: "グリムジョー（Ｎｏ．６）の従属官（フラシオン）・破面Ｎｏ．１１", name: "シャウロン・クーファン", kana: "しゃうろん・くーふぁん", zanpakuto: "？？？", zanpakutoKana: "？？？" },
+            { role: "グリムジョー（Ｎｏ．６）の従属官（フラシオン）・破面Ｎｏ．１３", name: 'エドラド・リオネス<span class="nickname-tag">（斑目一角に敗北）</span>', kana: "えどらど・りおねす", zanpakuto: "熾きろ、火山獣（おきろ、ボルカニカ）", zanpakutoKana: "おきろ ぼるかにか" },
+            { role: "グリムジョー（Ｎｏ．６）の従属官（フラシオン）・破面", name: "ディ・ロイ", kana: "でぃ・ろい", zanpakuto: "？？？", zanpakutoKana: "？？？" }
+        ]
     },
     hueco_other: {
         name: "その他",
@@ -576,18 +558,41 @@ const squadData = {
             },
             {
                 role: "元・破面（アランカル）Ｎｏ．６",
-                name: "グリムジョー・ジャガージャック",
-                kana: "ぐりむじょー・じゃがーじゃっく",
-                zanpakuto: "軋れ…（きしれ…）",
-                zanpakutoKana: "きしれ…"
+                name: "ルピ",
+                kana: "るぴ",
+                zanpakuto: "？？？",
+                zanpakutoKana: "？？？"
             },
             {
-                name: "ネル・トゥ",
-                kana: "ねる・とぅ"
+                role: "破面（アランカル）Ｎｏ．１０３",
+                name: "ドルドーニ",
+                kana: "どるどーに",
+                zanpakuto: "旋れ、暴風男爵（まわれ、ヒラルダ）",
+                zanpakutoKana: "まわれ ひらるだ"
             },
             {
-                name: "ペッシェ",
-                kana: "ぺっしぇ"
+                role: "破面（アランカル）Ｎｏ．１０５",
+                name: "チルッチ・サンダーウィッチ",
+                kana: "ちるっち・さんだーうぃっち",
+                zanpakuto: "掻っ斬れ、車輪鉄燕（かっきれ、ゴロンドリーナ）",
+                zanpakutoKana: "かっきれ ごろんどりーな"
+            },
+            {
+                role: "破面（アランカル）Ｎｏ．１０７",
+                name: 'ガンテンバイン<span class="nickname-tag">（チャドに敗北）</span>',
+                kana: "がんてんばいん",
+                zanpakuto: "龍拳（ドラグラ）",
+                zanpakutoKana: "どらぐら"
+            },
+            {
+                name: "ネル・トゥ → 元No.3 ネリエル・トゥ・オーデルシュヴァンク",
+                kana: "ねる・とぅ → ねりえる・とぅ・おーでるしゅヴぁんく",
+                zanpakuto: "謳え、羚騎士（うたえ、ガミューサ）",
+                zanpakutoKana: "うたえ がみゅーさ"
+            },
+            {
+                name: "ペッシェ・ガティーシェ",
+                kana: "ぺっしぇ・がてぃーしぇ"
             },
             {
                 name: "ドンドチャッカ",
@@ -595,29 +600,6 @@ const squadData = {
             }
         ]
     }
-};
-
-// 十刃個別のデータ定義（全破面）
-const espadaMembersData = {
-    unknown: { title: "十刃（No.不明）", members: [{ role: "破面（アランカル）", name: "ウルキオラ", kana: "うるきおら", zanpakuto: "？？？", zanpakutoKana: "？？？" }] },
-    1: { title: "十刃（No.１）", members: [{ role: "破面（アランカル）Ｎｏ．１", name: "？？？", kana: "？？？", zanpakuto: "？？？", zanpakutoKana: "？？？" }] },
-    2: { title: "十刃（No.２）", members: [{ role: "破面（アランカル）Ｎｏ．２", name: "？？？", kana: "？？？", zanpakuto: "？？？", zanpakutoKana: "？？？" }] },
-    3: { title: "十刃（No.３）", members: [{ role: "破面（アランカル）Ｎｏ．３", name: "？？？", kana: "？？？", zanpakuto: "？？？", zanpakutoKana: "？？？" }] },
-    4: { title: "十刃（No.４）", members: [{ role: "破面（アランカル）Ｎｏ．４", name: "？？？", kana: "？？？", zanpakuto: "？？？", zanpakutoKana: "？？？" }] },
-    5: { title: "十刃（No.５）", members: [{ role: "破面（アランカル）Ｎｏ．５", name: "？？？", kana: "？？？", zanpakuto: "？？？", zanpakutoKana: "？？？" }] },
-    6: { 
-        title: "十刃（No.６）", 
-        members: [
-            { role: "破面（アランカル）Ｎｏ．６", name: "ルピ", kana: "るぴ", zanpakuto: "？？？", zanpakutoKana: "？？？" },
-            { role: "従属官（フラシオン）・破面Ｎｏ．１１", name: "シャウロン・クーファン", kana: "しゃうろん・くーふぁん", zanpakuto: "？？？", zanpakutoKana: "？？？" },
-            { role: "従属官（フラシオン）・破面Ｎｏ．１３", name: 'エドラド・リオネス<span class="nickname-tag">（斑目一角に敗北）</span>', kana: "えどらど・りおねす", zanpakuto: "熾きろ（おきろ）火山獣（ボルカニカ）", zanpakutoKana: "おきろ ぼるかにか" },
-            { role: "従属官（フラシオン）・破面", name: "ディ・ロイ", kana: "でぃ・ろい", zanpakuto: "？？？", zanpakutoKana: "？？？" }
-        ] 
-    },
-    7: { title: "十刃（No.７）", members: [{ role: "破面（アランカル）Ｎｏ．７", name: "？？？", kana: "？？？", zanpakuto: "？？？", zanpakutoKana: "？？？" }] },
-    8: { title: "十刃（No.８）", members: [{ role: "破面（アランカル）Ｎｏ．８", name: "？？？", kana: "？？？", zanpakuto: "？？？", zanpakutoKana: "？？？" }] },
-    9: { title: "十刃（No.９）", members: [{ role: "破面（アランカル）Ｎｏ．９", name: "？？？", kana: "？？？", zanpakuto: "？？？", zanpakutoKana: "？？？" }] },
-    10: { title: "十刃（No.１０）", members: [{ role: "破面（アランカル）Ｎｏ．１０", name: "ヤミー", kana: "やみー", zanpakuto: "？？？", zanpakutoKana: "？？？" }] }
 };
 
 const extraSeats = [
@@ -650,9 +632,7 @@ function switchCategory(category) {
 
 function renderButtons() {
     const btnContainer = document.getElementById('btnContainer');
-    const espadaSubContainer = document.getElementById('espadaSubContainer');
     btnContainer.innerHTML = '';
-    espadaSubContainer.style.display = 'none';
 
     if (currentCategory === 'gotei') {
         const btnOrder = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 0];
@@ -693,69 +673,9 @@ function renderButtons() {
     }
 }
 
-function renderEspadaSubButtons() {
-    const espadaSubContainer = document.getElementById('espadaSubContainer');
-    espadaSubContainer.innerHTML = '';
-    espadaSubContainer.style.display = 'flex';
-
-    // No.不明 ボタン
-    const unknownBtn = document.createElement('button');
-    unknownBtn.className = 'espada-sub-btn';
-    if (currentEspadaKey === 'unknown') unknownBtn.classList.add('active');
-    unknownBtn.innerText = 'No.不明';
-    unknownBtn.onclick = function() {
-        currentEspadaKey = 'unknown';
-        renderEspadaSubButtons();
-        showEspadaSingle('unknown');
-    };
-    espadaSubContainer.appendChild(unknownBtn);
-
-    // No.1～10 ボタン
-    for (let i = 1; i <= 10; i++) {
-        const btn = document.createElement('button');
-        btn.className = 'espada-sub-btn';
-        if (currentEspadaKey === i) btn.classList.add('active');
-        btn.innerText = `No. ${i}`;
-        btn.onclick = function() {
-            currentEspadaKey = i;
-            renderEspadaSubButtons();
-            showEspadaSingle(i);
-        };
-        espadaSubContainer.appendChild(btn);
-    }
-}
-
-function showEspadaSingle(key) {
-    const eData = espadaMembersData[key];
-    document.getElementById('squadName').innerText = eData.title;
-
-    const standardBox = document.getElementById('standardPositions');
-    const specialBox = document.getElementById('specialPosition');
-    const dynamicSeats = document.getElementById('dynamicSeats');
-
-    standardBox.style.display = 'none';
-    specialBox.style.display = 'none';
-    dynamicSeats.innerHTML = '';
-
-    eData.members.forEach(m => {
-        const memberWrapper = document.createElement('div');
-        memberWrapper.className = 'dynamic-position';
-        const zanpakutoHTML = makeZanpakutoHTML(m.zanpakuto, m.zanpakutoKana, m.bankai, m.bankaiKana, true);
-        const roleHTML = m.role ? `<div class="position-title">${m.role}</div>` : '';
-
-        memberWrapper.innerHTML = `
-            ${roleHTML}
-            <p class="char-name">${m.name}</p>
-            <p class="char-kana">${m.kana}</p>
-            ${zanpakutoHTML}
-        `;
-        dynamicSeats.appendChild(memberWrapper);
-    });
-}
-
 function makeZanpakutoHTML(name, kana, bankaiName, bankaiKana, isArrancar = false) {
     if (!name) return '';
-    const label = isArrancar ? "斬魄刀・解号" : "斬魄刀";
+    const label = isArrancar ? "帰刃（レスレクシオン）" : "斬魄刀";
     let html = `
         <div class="dynamic-position">
             <p class="zanpakuto-area">${label}: ${name}</p>
@@ -778,16 +698,6 @@ let currentSquadNum = null;
 function showSquad(num) {
     currentSquadNum = num;
     const data = squadData[num];
-
-    const espadaSubContainer = document.getElementById('espadaSubContainer');
-
-    if (data.isEspadaGroup) {
-        renderEspadaSubButtons();
-        showEspadaSingle(currentEspadaKey);
-        return;
-    } else {
-        espadaSubContainer.style.display = 'none';
-    }
 
     if (data.nameHtml) {
         document.getElementById('squadName').innerHTML = data.nameHtml;
@@ -822,7 +732,7 @@ function showSquad(num) {
             const memberWrapper = document.createElement('div');
             memberWrapper.className = 'dynamic-position';
             
-            // 破面判定（グループ指定かつ破面本人のみ「斬魄刀・解号」表記にする）
+            // 破面判定（グループ指定かつ破面本人のみ「帰刃（レスレクシオン）」表記にする）
             const isMemberArrancar = !!data.isArrancar && (m.name !== "藍染惣右介" && m.name !== '市丸ギン<span class="nickname-tag">（ワビスケ）</span>' && m.name !== "東仙要");
             const zanpakutoHTML = makeZanpakutoHTML(m.zanpakuto, m.zanpakutoKana, m.bankai, m.bankaiKana, isMemberArrancar);
             const roleHTML = m.role ? `<div class="position-title">${m.role}</div>` : '';
