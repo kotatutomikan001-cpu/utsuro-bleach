@@ -229,7 +229,7 @@
         <span class="utsuro-highlight">氷室うつろさん</span><br>
         <span class="bleach-highlight">BLEACH Rebirth of Souls 配信用</span><br>
         組織一覧表
-        <span class="stream-date-sub">※8月19日配信現在</span>
+        <span class="stream-date-sub">※8月29日配信現在</span>
     </h1>
 
     <div class="notice-text">
@@ -284,7 +284,7 @@ const squadData = {
         role1: "隊長・護廷十三隊総隊長",
         captain: "山本元柳斎重國", captainKana: "やまもとげんりゅうさいしげくに", 
         captainZanpakuto: "流刃若火", captainZanpakutoKana: "りゅうじんじゃっか",
-        lieutenant: "？？？", lieutenantKana: "？？？",
+        lieutenant: "雀部長次郎", lieutenantKana: "ささきべちょうじろう",
         lieutenantZanpakuto: "？？？", lieutenantZanpakutoKana: "？？？"
     },
     2: { 
@@ -292,6 +292,7 @@ const squadData = {
         role1: "隊長・隠密機動総司令官及び同第一分隊「刑軍」統括軍団長",
         captain: "砕蜂", captainKana: "ソイフォン", 
         captainZanpakuto: "雀蜂", captainZanpakutoKana: "すずめばち",
+        captainBankai: "雀蜂雷公鞭", captainBankaiKana: "じゃくほうらいこうべん",
         lieutenant: "大前田希千代", lieutenantKana: "おおまえだまれちよ",
         lieutenantZanpakuto: "？？？", lieutenantZanpakutoKana: "？？？"
     },
@@ -352,7 +353,7 @@ const squadData = {
         captainZanpakuto: '<s style="opacity:0.6;">清虫</s>', captainZanpakutoKana: '<s style="opacity:0.6;">すずむし</s>',
         captainBankai: '<s style="opacity:0.6;">清虫終式・閻魔蟋蟀</s>', captainBankaiKana: '<s style="opacity:0.6;">すずむしついしき・えんまこおろぎ</s>',
         lieutenant: "檜佐木修兵", lieutenantKana: "ひさぎしゅうへい",
-        lieutenantZanpakuto: "？？？", lieutenantZanpakutoKana: "？？？"
+        lieutenantZanpakuto: "風死", lieutenantZanpakutoKana: "かぜしに"
     },
     10: { 
         name: "十番隊", 
@@ -360,7 +361,7 @@ const squadData = {
         captainZanpakuto: "氷輪丸", captainZanpakutoKana: "ひょうりんまる",
         captainBankai: "大紅蓮氷輪丸", captainBankaiKana: "だいぐれんひょうりんまる",
         lieutenant: "松本乱菊", lieutenantKana: "まつもとらんぎく",
-        lieutenantZanpakuto: "？？？", lieutenantZanpakutoKana: "？？？"
+        lieutenantZanpakuto: "灰猫", lieutenantZanpakutoKana: "はいねこ"
     },
     11: { 
         name: "十一番隊", 
@@ -441,22 +442,40 @@ const squadData = {
         isMultiList: true,
         members: [
             {
+                role: "元・護廷十三隊五番隊隊長",
                 name: "平子真子",
                 kana: "ひらこしんじ",
                 zanpakuto: "逆撫",
                 zanpakutoKana: "さかなで"
             },
             {
+                role: "元・護廷十三隊十二番隊副隊長",
                 name: "猿柿ひよ里",
                 kana: "さるがきひより",
                 zanpakuto: "？？？",
                 zanpakutoKana: "？？？"
             },
             {
+                role: "元・鬼道衆副鬼道長",
                 name: '有昭田鉢玄<span class="nickname-tag">（ハッチ）</span>',
                 kana: "うしょうだはちげん",
                 zanpakuto: "？？？",
                 zanpakutoKana: "？？？"
+            },
+            {
+                name: 'セーラー服の眼鏡少女<span class="dead-tag">→帰宅</span>'
+            },
+            {
+                name: '緑ジャージのグラサン男<span class="dead-tag">→帰宅</span>'
+            },
+            {
+                name: '短髪タンクトップ男<span class="dead-tag">→帰宅</span>'
+            },
+            {
+                name: '全身ヒーロースーツの少女<span class="dead-tag">→帰宅</span>'
+            },
+            {
+                name: '金髪長身の男<span class="dead-tag">→帰宅</span>'
             }
         ]
     },
@@ -465,7 +484,7 @@ const squadData = {
         isMultiList: true,
         members: [
             {
-                role: "元・隠密機動総司令官及び同第一分隊「刑軍」統括軍団長",
+                role: "元・護廷十三隊二番隊隊長 元・隠密機動総司令官及び同第一分隊『刑軍』統括軍団長",
                 name: "四楓院夜一",
                 kana: "しほういんよるいち",
                 zanpakuto: "？？？",
@@ -477,6 +496,11 @@ const squadData = {
                 kana: "うらはらきすけ",
                 zanpakuto: "紅姫",
                 zanpakutoKana: "べにひめ"
+            },
+            {
+                role: "浦原商店店員 元・鬼道衆大鬼道長",
+                name: "握菱鉄裁",
+                kana: "つかびしてっさい"
             },
             {
                 role: "元・護廷十三隊",
@@ -529,19 +553,37 @@ const squadData = {
         isMultiList: true,
         isArrancar: true,
         members: [
-            { role: "破面（アランカル）Ｎｏ．１", name: "？？？", kana: "？？？", zanpakuto: "？？？", zanpakutoKana: "？？？" },
-            { role: "破面（アランカル）Ｎｏ．２", name: "？？？", kana: "？？？", zanpakuto: "？？？", zanpakutoKana: "？？？" },
-            { role: "破面（アランカル）Ｎｏ．３", name: "？？？", kana: "？？？", zanpakuto: "？？？", zanpakutoKana: "？？？" },
-            { role: "破面（アランカル）Ｎｏ．４", name: "ウルキオラ・シファー", kana: "うるきおら・しふぁー", zanpakuto: "？？？", zanpakutoKana: "？？？" },
-            { role: "破面（アランカル）Ｎｏ．５", name: "ノイトラ", kana: "のいとら", zanpakuto: "？？？", zanpakutoKana: "？？？" },
-            { role: "破面（アランカル）Ｎｏ．６", name: "グリムジョー・ジャガージャック", kana: "ぐりむじょー・じゃがーじゃっく", zanpakuto: "軋れ、豹王（きしれ、パンテラ）", zanpakutoKana: "きしれ ぱんてら" },
-            { role: "破面（アランカル）Ｎｏ．７", name: "ゾマリ・ルルー", kana: "ぞまり・るるー", zanpakuto: "？？？", zanpakutoKana: "？？？" },
-            { role: "破面（アランカル）Ｎｏ．８", name: "ザエルアポロ・グランツ", kana: "ざえるあぽろ・ぐらんつ", zanpakuto: "啜れ、邪淫妃（すすれ、フォルニカラス）", zanpakutoKana: "すすれ ふぉるにからす" },
-            { role: "破面（アランカル）Ｎｏ．９", name: "アーロニーロ・アルルエリ", kana: "あーろにーろ・あるるえり", zanpakuto: "喰い尽くせ、喰虚（くいつくせ、グロトネリア）", zanpakutoKana: "くいつくせ ぐろとねりあ" },
-            { role: "破面（アランカル）Ｎｏ．１０", name: "ヤミー", kana: "やみー", zanpakuto: "？？？", zanpakutoKana: "？？？" },
-            { role: "グリムジョー（Ｎｏ．６）の従属官（フラシオン）・破面Ｎｏ．１１", name: "シャウロン・クーファン", kana: "しゃうろん・くーふぁん", zanpakuto: "？？？", zanpakutoKana: "？？？" },
-            { role: "グリムジョー（Ｎｏ．６）の従属官（フラシオン）・破面Ｎｏ．１３", name: 'エドラド・リオネス<span class="nickname-tag">（斑目一角に敗北）</span>', kana: "えどらど・りおねす", zanpakuto: "熾きろ、火山獣（おきろ、ボルカニカ）", zanpakutoKana: "おきろ ぼるかにか" },
-            { role: "グリムジョー（Ｎｏ．６）の従属官（フラシオン）・破面", name: "ディ・ロイ", kana: "でぃ・ろい", zanpakuto: "？？？", zanpakutoKana: "？？？" }
+            { role: "破面（アランカル）Ｎｏ．０", name: "ヤミー・リヤルゴ", kana: "やみー・りやるご", zanpakuto: "？？？" },
+            { 
+                role: "破面（アランカル）Ｎｏ．１", 
+                name: "コヨーテ・スターク＆リリネット・ジンジャーバック", 
+                kana: "こよーて・すたーく ＆ りりねっと・じんじゃーばっく", 
+                zanpakuto: "蹴散らせ群狼（けちらせロス・ロボス）" 
+            },
+            { 
+                role: "破面（アランカル）Ｎｏ．２", 
+                name: "バラガン・ルイゼンバーン", 
+                kana: "ばらがん・るいぜんばーん", 
+                zanpakuto: "朽ちろ髑髏大帝（くちろアロガンテ）" 
+            },
+            { 
+                role: "破面（アランカル）Ｎｏ．３", 
+                name: "ティア・ハリベル", 
+                kana: "てぃあ・はりべる", 
+                zanpakuto: "討て皇鮫后（うてティブロン）" 
+            },
+            { 
+                role: "破面（アランカル）Ｎｏ．４", 
+                name: "ウルキオラ・シファー", 
+                kana: "うるきおら・しふぁー", 
+                zanpakuto: "鎖せ、黒翼大魔（とざせ、ムルシエラゴ）", 
+                segunda: "刀剣解放第二階層（レスレクシオン・セグンダ・エタール）"
+            },
+            { role: "破面（アランカル）Ｎｏ．５", name: "ノイトラ・ジルガ", kana: "のいとら・じるが", zanpakuto: "祈れ、聖哭螳蜋（いのれ、サンタテレサ）" },
+            { role: "破面（アランカル）Ｎｏ．６", name: "グリムジョー・ジャガージャック", kana: "ぐりむじょー・じゃがーじゃっく", zanpakuto: "軋れ、豹王（きしれ、パンテラ）" },
+            { role: "破面（アランカル）Ｎｏ．７", name: "ゾマリ・ルルー", kana: "ぞまり・るるー", zanpakuto: "鎮まれ、呪眼僧伽（しずまれ、ブルヘリア）" },
+            { role: "破面（アランカル）Ｎｏ．８", name: "ザエルアポロ・グランツ", kana: "ざえるあぽろ・ぐらんつ", zanpakuto: "啜れ、邪淫妃（すすれ、フォルニカラス）" },
+            { role: "破面（アランカル）Ｎｏ．９", name: "アーロニーロ・アルルエリ", kana: "あーろにーろ・あるるえり", zanpakuto: "喰い尽くせ、喰虚（くいくせ、グロトネリア）" }
         ]
     },
     hueco_other: {
@@ -550,45 +592,98 @@ const squadData = {
         isArrancar: true,
         members: [
             {
+                role: "バラガンの従属官（フラシオン）",
+                name: "ポウ",
+                kana: "ぽう",
+                zanpakuto: "気吹け巨腕鯨（いぶけカルデロン）"
+            },
+            {
+                role: "バラガンの従属官（フラシオン）",
+                name: "アビラマ・レッダー",
+                kana: "あびらま・れっだー",
+                zanpakuto: "頂を削れ空戦鷲（いただきをけずれアギラ）"
+            },
+            {
+                role: "ハリベルの従属官（フラシオン）・破面Ｎｏ．５４",
+                name: "アパッチ",
+                kana: "あぱっち",
+                zanpakuto: "突き上げろ碧鹿闘女（つきあげろシエルバ）"
+            },
+            {
+                role: "ハリベルの従属官（フラシオン）・破面Ｎｏ．５５",
+                name: "ミラ・ローズ",
+                kana: "みら・ろーず",
+                zanpakuto: "喰い散らせ金獅子将（くいちらせレオーナ）"
+            },
+            {
+                role: "ハリベルの従属官（フラシオン）・破面Ｎｏ．５６",
+                name: "スンスン",
+                kana: "すんすん",
+                zanpakuto: "絞め殺せ白蛇姫（しめころせアナコンダ）"
+            },
+            {
+                role: "アパッチ・ミラ・ローズ・スンスンの左腕を切り落とし召喚した怪獣",
+                name: "混獣神（キメラ・パルカ）アヨン",
+                kana: "あよん"
+            },
+            {
+                role: "葬討部隊（エクセキアス）隊長",
+                name: "ルドボーン",
+                kana: "るどぼーん",
+                zanpakuto: "生い上がれ、髑髏樹（おいあがれ、アルボラ）"
+            },
+            {
+                role: "グリムジョー（Ｎｏ．６）の従属官（フラシオン）・破面Ｎｏ．１１",
+                name: "シャウロン・クーファン",
+                kana: "しゃうろん・くーふぁん",
+                zanpakuto: "？？？"
+            },
+            {
+                role: "グリムジョー（Ｎｏ．６）の従属官（フラシオン）・破面Ｎｏ．１３",
+                name: "エドラド・リオネス",
+                kana: "えどらど・りおねす",
+                zanpakuto: "熾きろ、火山獣（おきろ、ボルカニカ）"
+            },
+            {
+                role: "グリムジョー（Ｎｏ．６）の従属官（フラシオン）・破面",
+                name: "ディ・ロイ",
+                kana: "でぃ・ろい",
+                zanpakuto: "？？？"
+            },
+            {
                 role: "改造破面（アランカル）",
                 name: "ワンダーワイス・マルジェラ",
                 kana: "わんだーわいす・まるじぇら",
-                zanpakuto: "？？？",
-                zanpakutoKana: "？？？"
+                zanpakuto: "？？？"
             },
             {
                 role: "元・破面（アランカル）Ｎｏ．６",
                 name: "ルピ",
                 kana: "るぴ",
-                zanpakuto: "？？？",
-                zanpakutoKana: "？？？"
+                zanpakuto: "？？？"
             },
             {
                 role: "破面（アランカル）Ｎｏ．１０３",
                 name: "ドルドーニ",
                 kana: "どるどーに",
-                zanpakuto: "旋れ、暴風男爵（まわれ、ヒラルダ）",
-                zanpakutoKana: "まわれ ひらるだ"
+                zanpakuto: "旋れ、暴風男爵（まわれ、ヒラルダ）"
             },
             {
                 role: "破面（アランカル）Ｎｏ．１０５",
                 name: "チルッチ・サンダーウィッチ",
                 kana: "ちるっち・さんだーうぃっち",
-                zanpakuto: "掻っ斬れ、車輪鉄燕（かっきれ、ゴロンドリーナ）",
-                zanpakutoKana: "かっきれ ごろんどりーな"
+                zanpakuto: "掻っ斬れ、車輪鉄燕（かっきれ、ゴロンドリーナ）"
             },
             {
                 role: "破面（アランカル）Ｎｏ．１０７",
-                name: 'ガンテンバイン<span class="nickname-tag">（チャドに敗北）</span>',
+                name: "ガンテンバイン",
                 kana: "がんてんばいん",
-                zanpakuto: "龍拳（ドラグラ）",
-                zanpakutoKana: "どらぐら"
+                zanpakuto: "龍拳（ドラグラ）"
             },
             {
                 name: "ネル・トゥ → 元No.3 ネリエル・トゥ・オーデルシュヴァンク",
-                kana: "ねる・とぅ → ねりえる・とぅ・おーでるしゅヴぁんく",
-                zanpakuto: "謳え、羚騎士（うたえ、ガミューサ）",
-                zanpakutoKana: "うたえ がみゅーさ"
+                kana: "ねる・とぅ → ねりえる・とぅ・おーでるしゅばんく",
+                zanpakuto: "謳え、羚騎士（うたえ、ガミューサ）"
             },
             {
                 name: "ペッシェ・ガティーシェ",
@@ -673,20 +768,29 @@ function renderButtons() {
     }
 }
 
-function makeZanpakutoHTML(name, kana, bankaiName, bankaiKana, isArrancar = false) {
+function makeZanpakutoHTML(name, kana, bankaiName, bankaiKana, isArrancar = false, segundaName = null, segundaKana = null) {
     if (!name) return '';
-    const label = isArrancar ? "帰刃（レスレクシオン）" : "斬魄刀";
+    // isArrancar（破面）の場合は「帰刃: 」表記、死神等の場合は「斬魄刀: 」表記
+    const labelText = isArrancar ? "帰刃" : "斬魄刀";
     let html = `
         <div class="dynamic-position">
-            <p class="zanpakuto-area">${label}: ${name}</p>
-            <p class="zanpakuto-kana">${kana || ''}</p>
+            <p class="zanpakuto-area">${labelText}: ${name}</p>
+            ${kana ? `<p class="zanpakuto-kana">${kana}</p>` : ''}
         </div>
     `;
     if (bankaiName) {
         html += `
             <div class="dynamic-position">
                 <p class="bankai-area">卍解: ${bankaiName}</p>
-                <p class="bankai-kana">${bankaiKana || ''}</p>
+                ${bankaiKana ? `<p class="bankai-kana">${bankaiKana}</p>` : ''}
+            </div>
+        `;
+    }
+    if (segundaName) {
+        html += `
+            <div class="dynamic-position">
+                <p class="bankai-area" style="color:#ab47bc;">${segundaName}</p>
+                ${segundaKana ? `<p class="bankai-kana" style="color:#ce93d8;">${segundaKana}</p>` : ''}
             </div>
         `;
     }
@@ -732,15 +836,16 @@ function showSquad(num) {
             const memberWrapper = document.createElement('div');
             memberWrapper.className = 'dynamic-position';
             
-            // 破面判定（グループ指定かつ破面本人のみ「帰刃（レスレクシオン）」表記にする）
-            const isMemberArrancar = !!data.isArrancar && (m.name !== "藍染惣右介" && m.name !== '市丸ギン<span class="nickname-tag">（ワビスケ）</span>' && m.name !== "東仙要");
-            const zanpakutoHTML = makeZanpakutoHTML(m.zanpakuto, m.zanpakutoKana, m.bankai, m.bankaiKana, isMemberArrancar);
+            // 破面判定（グループ指定かつ破面本人のみ「帰刃: 」表記にする。アヨンは帰刃を持たないので除外）
+            const isMemberArrancar = !!data.isArrancar && (m.name !== "藍染惣右介" && m.name !== '市丸ギン<span class="nickname-tag">（ワビスケ）</span>' && m.name !== "東仙要" && m.name !== "混獣神（キメラ・パルカ）アヨン");
+            const zanpakutoHTML = makeZanpakutoHTML(m.zanpakuto, m.zanpakutoKana, m.bankai, m.bankaiKana, isMemberArrancar, m.segunda, m.segundaKana);
             const roleHTML = m.role ? `<div class="position-title">${m.role}</div>` : '';
+            const kanaHTML = m.kana ? `<p class="char-kana">${m.kana}</p>` : '';
 
             memberWrapper.innerHTML = `
                 ${roleHTML}
                 <p class="char-name">${m.name}</p>
-                <p class="char-kana">${m.kana}</p>
+                ${kanaHTML}
                 ${zanpakutoHTML}
             `;
             dynamicSeats.appendChild(memberWrapper);
