@@ -55,6 +55,15 @@
             margin-top: 4px;
         }
 
+        .congrats-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #e50914;
+            text-shadow: 0 0 10px rgba(229, 9, 20, 0.8);
+            margin-bottom: 5px;
+            display: block;
+        }
+
         .notice-text {
             font-size: 0.85em;
             color: #aaa;
@@ -206,8 +215,26 @@
             color: #f48fb1;
             margin: 0;
         }
+        .saigo-getsuga-area {
+            font-size: 0.9em;
+            color: #ff9800;
+            margin: 4px 0 0 0;
+            font-weight: bold;
+        }
+        .saigo-getsuga-desc {
+            font-size: 0.75em;
+            color: #ffcc80;
+            margin: 1px 0 0 0;
+            line-height: 1.4;
+        }
         .dead-tag {
             color: #e50914;
+            font-size: 0.85em;
+            margin-left: 8px;
+            font-weight: bold;
+        }
+        .return-tag {
+            color: #00ffff;
             font-size: 0.85em;
             margin-left: 8px;
             font-weight: bold;
@@ -236,10 +263,11 @@
 
     <!-- 見出し -->
     <h1>
+        <span class="congrats-title">祝！完結！</span>
         <span class="utsuro-highlight">氷室うつろさん</span><br>
         <span class="bleach-highlight">BLEACH Rebirth of Souls 配信用</span><br>
         組織一覧表
-        <span class="stream-date-sub">※8月29日配信現在</span>
+        <span class="stream-date-sub">※9月19日配信現在 完結！</span>
     </h1>
 
     <div class="notice-text">
@@ -426,7 +454,9 @@ const squadData = {
                 zanpakuto: "斬月",
                 zanpakutoKana: "ざんげつ",
                 bankai: "天鎖斬月",
-                bankaiKana: "てんさざんげつ"
+                bankaiKana: "てんさざんげつ",
+                saigoGetsuga: "最後の月牙天衝",
+                saigoGetsugaDesc: "一護自身が月牙になる事、黒髪の長髪・赤眼の姿になり、一度力を使えば死神の力を失ってしまう"
             },
             {
                 role: "滅却師（クインシー）",
@@ -434,7 +464,7 @@ const squadData = {
                 kana: "いしだうりゅう"
             },
             {
-                name: '井上織姫<span class="dead-tag">→虚圏へ連行される</span>',
+                name: '井上織姫<span class="dead-tag">→虚圏へ連行される</span><span class="return-tag">→帰還</span>',
                 kana: "いのうえおりひめ"
             },
             {
@@ -535,26 +565,29 @@ const squadData = {
         members: [
             {
                 role: "総括",
-                name: "藍染惣右介",
+                name: '藍染惣右介<span class="dead-tag">→地下監獄最下層第八監獄”無間”1万8800年の投獄刑→挑発により更に目と口を拘束され刑期を2万年に引き上げられる</span>',
                 kana: "あいぜんそうすけ",
                 zanpakuto: "鏡花水月",
                 zanpakutoKana: "きょうかすいげつ"
             },
             {
                 role: "統括官",
-                name: '市丸ギン<span class="nickname-tag">（ワビスケ）</span>',
+                name: '市丸ギン<span class="dead-tag">（死亡）</span>',
                 kana: "いちまるぎん",
                 zanpakuto: "神鎗",
-                zanpakutoKana: "しんそう"
+                zanpakutoKana: "しんそう",
+                bankai: "神殺槍",
+                bankaiKana: "かみしにのやり"
             },
             {
                 role: "統括官",
-                name: "東仙要",
+                name: '東仙要<span class="dead-tag">（死亡）</span>',
                 kana: "とうせんかなめ",
                 zanpakuto: "清虫",
                 zanpakutoKana: "すずむし",
                 bankai: "清虫終式・閻魔蟋蟀",
-                bankaiKana: "すずむしついしき・えんまこおろぎ"
+                bankaiKana: "すずむしついしき・えんまこおろぎ",
+                resurreccion: "清虫百式 狂枷蟋蟀（グリジャルグリージョ）"
             }
         ]
     },
@@ -563,16 +596,16 @@ const squadData = {
         isMultiList: true,
         isArrancar: true,
         members: [
-            { role: "破面（アランカル）Ｎｏ．０", name: "ヤミー・リヤルゴ", kana: "やみー・りやるご", zanpakuto: "？？？" },
+            { role: "破面（アランカル）Ｎｏ．０", name: 'ヤミー・リヤルゴ<span class="dead-tag">（死亡）</span>', kana: "やみー・りやるご", zanpakuto: "？？？" },
             { 
                 role: "破面（アランカル）Ｎｏ．１", 
-                name: "コヨーテ・スターク＆リリネット・ジンジャーバック", 
+                name: 'コヨーテ・スターク＆リリネット・ジンジャーバック<span class="dead-tag">（死亡）</span>', 
                 kana: "こよーて・すたーく ＆ りりねっと・じんじゃーばっく", 
                 zanpakuto: "蹴散らせ群狼（けちらせロス・ロボス）" 
             },
             { 
                 role: "破面（アランカル）Ｎｏ．２", 
-                name: "バラガン・ルイゼンバーン", 
+                name: 'バラガン・ルイゼンバーン<span class="dead-tag">（死亡）</span>', 
                 kana: "ばらがん・るいぜんばーん", 
                 zanpakuto: "朽ちろ髑髏大帝（くちろアロガンテ）" 
             },
@@ -584,16 +617,16 @@ const squadData = {
             },
             { 
                 role: "破面（アランカル）Ｎｏ．４", 
-                name: "ウルキオラ・シファー", 
+                name: 'ウルキオラ・シファー<span class="dead-tag">（死亡）</span>', 
                 kana: "うるきおら・しふぁー", 
                 zanpakuto: "鎖せ、黒翼大魔（とざせ、ムルシエラゴ）", 
                 segunda: "刀剣解放第二階層（レスレクシオン・セグンダ・エタール）"
             },
-            { role: "破面（アランカル）Ｎｏ．５", name: "ノイトラ・ジルガ", kana: "のいとら・じるが", zanpakuto: "祈れ、聖哭螳蜋（いのれ、サンタテレサ）" },
+            { role: "破面（アランカル）Ｎｏ．５", name: 'ノイトラ・ジルガ<span class="dead-tag">（死亡）</span>', kana: "のいとら・じるが", zanpakuto: "祈れ、聖哭螳蜋（いのれ、サンタテレサ）" },
             { role: "破面（アランカル）Ｎｏ．６", name: "グリムジョー・ジャガージャック", kana: "ぐりむじょー・じゃがーじゃっく", zanpakuto: "軋れ、豹王（きしれ、パンテラ）" },
-            { role: "破面（アランカル）Ｎｏ．７", name: "ゾマリ・ルルー", kana: "ぞまり・るるー", zanpakuto: "鎮まれ、呪眼僧伽（しずまれ、ブルヘリア）" },
-            { role: "破面（アランカル）Ｎｏ．８", name: "ザエルアポロ・グランツ", kana: "ざえるあぽろ・ぐらんつ", zanpakuto: "啜れ、邪淫妃（すすれ、フォルニカラス）" },
-            { role: "破面（アランカル）Ｎｏ．９", name: "アーロニーロ・アルルエリ", kana: "あーろにーろ・あるるえり", zanpakuto: "喰い尽くせ、喰虚（くいくせ、グロトネリア）" }
+            { role: "破面（アランカル）Ｎｏ．７", name: 'ゾマリ・ルルー<span class="dead-tag">（死亡）</span>', kana: "ぞまり・るるー", zanpakuto: "鎮まれ、呪眼僧伽（しずまれ、ブルヘリア）" },
+            { role: "破面（アランカル）Ｎｏ．８", name: 'ザエルアポロ・グランツ<span class="dead-tag">（死亡）</span>', kana: "ざえるあぽろ・ぐらんつ", zanpakuto: "啜れ、邪淫妃（すすれ、フォルニカラス）" },
+            { role: "破面（アランカル）Ｎｏ．９", name: 'アーロニーロ・アルルエリ<span class="dead-tag">（死亡）</span>', kana: "あーろにーろ・あるるえり", zanpakuto: "喰い尽くせ、喰虚（くいくせ、グロトネリア）" }
         ]
     },
     hueco_other: {
@@ -603,13 +636,13 @@ const squadData = {
         members: [
             {
                 role: "バラガンの従属官（フラシオン）",
-                name: "ポウ",
+                name: 'ポウ<span class="dead-tag">（死亡）</span>',
                 kana: "ぽう",
                 zanpakuto: "気吹け巨腕鯨（いぶけカルデロン）"
             },
             {
                 role: "バラガンの従属官（フラシオン）",
-                name: "アビラマ・レッダー",
+                name: 'アビラマ・レッダー<span class="dead-tag">（死亡）</span>',
                 kana: "あびらま・れっだー",
                 zanpakuto: "頂を削れ空戦鷲（いただきをけずれアギラ）"
             },
@@ -644,31 +677,31 @@ const squadData = {
             },
             {
                 role: "グリムジョー（Ｎｏ．６）の従属官（フラシオン）・破面Ｎｏ．１１",
-                name: "シャウロン・クーファン",
+                name: 'シャウロン・クーファン<span class="dead-tag">（死亡）</span>',
                 kana: "しゃうろん・くーふぁん",
                 zanpakuto: "？？？"
             },
             {
                 role: "グリムジョー（Ｎｏ．６）の従属官（フラシオン）・破面Ｎｏ．１３",
-                name: "エドラド・リオネス",
+                name: 'エドラド・リオネス<span class="dead-tag">（死亡）</span>',
                 kana: "えどらど・りおねす",
                 zanpakuto: "熾きろ、火山獣（おきろ、ボルカニカ）"
             },
             {
                 role: "グリムジョー（Ｎｏ．６）の従属官（フラシオン）・破面",
-                name: "ディ・ロイ",
+                name: 'ディ・ロイ<span class="dead-tag">（死亡）</span>',
                 kana: "でぃ・ろい",
                 zanpakuto: "？？？"
             },
             {
                 role: "改造破面（アランカル）",
-                name: "ワンダーワイス・マルジェラ",
+                name: 'ワンダーワイス・マルジェラ<span class="dead-tag">（死亡）</span>',
                 kana: "わんだーわいす・まるじぇら",
                 zanpakuto: "？？？"
             },
             {
                 role: "元・破面（アランカル）Ｎｏ．６",
-                name: "ルピ",
+                name: 'ルピ<span class="dead-tag">（グリムジョーにやられて死亡）</span>',
                 kana: "るぴ",
                 zanpakuto: "？？？"
             },
@@ -778,7 +811,7 @@ function renderButtons() {
     }
 }
 
-function makeZanpakutoHTML(name, kana, bankaiName, bankaiKana, isArrancar = false, segundaName = null, segundaKana = null) {
+function makeZanpakutoHTML(name, kana, bankaiName, bankaiKana, isArrancar = false, segundaName = null, segundaKana = null, saigoGetsuga = null, saigoGetsugaDesc = null, resurreccionName = null) {
     if (!name) return '';
     // isArrancar（破面）の場合は「帰刃: 」表記、死神等の場合は「斬魄刀: 」表記
     const labelText = isArrancar ? "帰刃" : "斬魄刀";
@@ -796,11 +829,26 @@ function makeZanpakutoHTML(name, kana, bankaiName, bankaiKana, isArrancar = fals
             </div>
         `;
     }
+    if (resurreccionName) {
+        html += `
+            <div class="dynamic-position">
+                <p class="bankai-area" style="color:#ab47bc;">刀剣解放（レスレクシオン）: ${resurreccionName}</p>
+            </div>
+        `;
+    }
     if (segundaName) {
         html += `
             <div class="dynamic-position">
                 <p class="bankai-area" style="color:#ab47bc;">${segundaName}</p>
                 ${segundaKana ? `<p class="bankai-kana" style="color:#ce93d8;">${segundaKana}</p>` : ''}
+            </div>
+        `;
+    }
+    if (saigoGetsuga) {
+        html += `
+            <div class="dynamic-position">
+                <p class="saigo-getsuga-area">${saigoGetsuga}</p>
+                ${saigoGetsugaDesc ? `<p class="saigo-getsuga-desc">${saigoGetsugaDesc}</p>` : ''}
             </div>
         `;
     }
@@ -847,8 +895,8 @@ function showSquad(num) {
             memberWrapper.className = 'dynamic-position';
             
             // 破面判定（グループ指定かつ破面本人のみ「帰刃: 」表記にする。アヨンは帰刃を持たないので除外）
-            const isMemberArrancar = !!data.isArrancar && (m.name !== "藍染惣右介" && m.name !== '市丸ギン<span class="nickname-tag">（ワビスケ）</span>' && m.name !== "東仙要" && m.name !== "混獣神（キメラ・パルカ）アヨン");
-            const zanpakutoHTML = makeZanpakutoHTML(m.zanpakuto, m.zanpakutoKana, m.bankai, m.bankaiKana, isMemberArrancar, m.segunda, m.segundaKana);
+            const isMemberArrancar = !!data.isArrancar && (m.name.indexOf("藍染惣右介") === -1 && m.name.indexOf("市丸ギン") === -1 && m.name.indexOf("東仙要") === -1 && m.name.indexOf("アヨン") === -1);
+            const zanpakutoHTML = makeZanpakutoHTML(m.zanpakuto, m.zanpakutoKana, m.bankai, m.bankaiKana, isMemberArrancar, m.segunda, m.segundaKana, m.saigoGetsuga, m.saigoGetsugaDesc, m.resurreccion);
             const roleHTML = m.role ? `<div class="position-title">${m.role}</div>` : '';
             const kanaHTML = m.kana ? `<p class="char-kana">${m.kana}</p>` : '';
 
@@ -894,7 +942,7 @@ function showSquad(num) {
         }
 
         if (data.captainZanpakuto) {
-            document.getElementById('captainZanpakuto').innerHTML = makeZanpakutoHTML(data.captainZanpakuto, data.captainZanpakutoKana, data.captainBankai, data.captainBankaiKana);
+            document.getElementById('captainZanpakuto').innerHTML = makeZanpakutoHTML(data.captainZanpakuto, data.captainZanpakutoKana, data.captainBankai, data.captainBankaiKana, false, null, null, null, null, data.captainResurreccion);
         }
         if (data.lieutenantZanpakuto && !data.hideLieutenant) {
             document.getElementById('lieutenantZanpakuto').innerHTML = makeZanpakutoHTML(data.lieutenantZanpakuto, data.lieutenantZanpakutoKana, data.lieutenantBankai, data.lieutenantBankaiKana);
